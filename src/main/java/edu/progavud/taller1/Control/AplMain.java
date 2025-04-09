@@ -5,8 +5,10 @@
 package edu.progavud.taller1.Control;
 
 /**
- *
- * @author ACER NITRO
+ * Clase Launcher del programa, inicializa
+ * los componentes del programa al instanciar un objeto
+ * de ControlPrincipal.
+ * @author Juan Diaz
  */
 public class AplMain {
     public static void main(String[] args) {
