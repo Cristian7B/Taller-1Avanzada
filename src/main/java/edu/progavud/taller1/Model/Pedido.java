@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.progavud.taller1.Model;
+package edu.progavud.taller1.model;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -13,14 +15,13 @@ public class Pedido {
     private int valorTotal;
     private int valorTotalPuntos;
     private String turnoPedido;
-    private ArrayList<ArrayList<Producto>> arrayBucketsyCombos;
+    
 
     public Pedido() {
         this.arrayProductos = new ArrayList<>();
         this.valorTotal = 0;
         this.valorTotalPuntos = 0;
         this.turnoPedido = "";
-        this.arrayBucketsyCombos = new ArrayList<>();
     }
 
     public ArrayList<Producto> getArrayProductos() {
@@ -55,13 +56,8 @@ public class Pedido {
         this.turnoPedido = turnoPedido;
     }
 
-    public ArrayList<ArrayList<Producto>> getArrayBucketsyCombos() {
-        return arrayBucketsyCombos;
-    }
 
-    public void setArrayBucketsyCombos(ArrayList<ArrayList<Producto>> arrayBucketsyCombos) {
-        this.arrayBucketsyCombos = arrayBucketsyCombos;
-    }
+
 
 
 }

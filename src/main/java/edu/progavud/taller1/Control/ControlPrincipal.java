@@ -2,21 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package edu.progavud.taller1.Control;
+package edu.progavud.taller1.control;
 
+import edu.progavud.taller1.model.Bucket;
+import edu.progavud.taller1.model.Combo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import edu.progavud.taller1.Model.Producto;
-import edu.progavud.taller1.View.VentanaPrincipal;
+import edu.progavud.taller1.model.Producto;
+import edu.progavud.taller1.view.VentanaPrincipal;
 
 /**
  * Clase encargada de la gestion y comunicacion 
  * de las clases en el programa.
  * @author Juan Diaz
  */
-public class ControlPrincipal implements ActionListener, InterfaceCreacion{
+public class ControlPrincipal implements InterfaceCreacion{
     
     /**
      * Forma de comunicacion con la vista.
@@ -26,7 +28,7 @@ public class ControlPrincipal implements ActionListener, InterfaceCreacion{
      * Forma en la que se accede y se controlan 
      * los atributos de los usuarios.
      */
-    private ControlUsuario usuarioPrincipal;
+    private ControlUsuario controlUsuario;
     /**
      * Forma en la que se modifican los productos.
      */
@@ -35,43 +37,33 @@ public class ControlPrincipal implements ActionListener, InterfaceCreacion{
      * Forma en la que se gestiona los pedidos.
      */
     private ControlPedido controlPedido;
+    /**
+     * Controller que gestiona eventos y oyentes
+     */
+    private ControlVentana controlVentana;
 
     public ControlPrincipal(){
+        vistaPrincipal = new VentanaPrincipal(this);
+        controlUsuario = new ControlUsuario(this, vistaPrincipal);
+        controlPedido = new ControlPedido(this, vistaPrincipal);
+        controlProducto = new ControlProducto(this, vistaPrincipal);
+        controlVentana = new ControlVentana(this, vistaPrincipal);
         
     }
 
-    /**
-     * Todos los listeners de la vista.
-     */
-    public void AsignarOyentes(){
-
-    }
-
-    /**
-     * Metodo para anadir un producto generico al pedido.
-     */
-    @Override
-    public void anadirProducto(Producto productoNuevo){
-        throw new UnsupportedOperationException("Fuck");
-    }
-
-    /**
-     * Metodo para agregar un array de productos 
-     * genericos al pedido.
-     */
-    @Override
-    public void anadirProducto(ArrayList<Producto> productoNuevo){
-        throw new UnsupportedOperationException("Fuck");
+    public void anadirProducto(Producto producto) {
+        controlPedido.anadirProducto(producto);
     }
     
-    /**
-     * Metodo que contiene todas las acciones 
-     * a realizar de los listeners.
-     */
-    @Override
-    public void actionPerformed(ActionEvent e){
-        throw new UnsupportedOperationException("Fuck");
+    public void añadirCombo(Combo comboNuevo) {
+        controlPedido.anadirProducto(comboNuevo);
     }
+    
+    public void añadirBucket(Bucket bucketNuevo) {
+        controlPedido.anadirProducto(bucketNuevo);
+    }
+    
+    
 
     
 }

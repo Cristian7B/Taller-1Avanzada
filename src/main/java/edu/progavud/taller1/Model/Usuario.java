@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.progavud.taller1.Model;
+package edu.progavud.taller1.model;
 
 /**
  *
@@ -11,10 +11,10 @@ package edu.progavud.taller1.Model;
 public class Usuario {
     private String nombre;
     private int cantidadPuntos;
-    private byte edad;
+    private int edad;
     private boolean isIndigena;
 
-    public Usuario(String nombre, int cantidadPuntos, byte edad, boolean isIndigena) {
+    public Usuario(String nombre, int cantidadPuntos, int edad, boolean isIndigena) {
         this.nombre = nombre;
         this.cantidadPuntos = cantidadPuntos;
         this.edad = edad;
@@ -37,11 +37,11 @@ public class Usuario {
         this.cantidadPuntos = cantidadPuntos;
     }
 
-    public byte getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(byte edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 

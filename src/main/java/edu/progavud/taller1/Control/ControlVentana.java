@@ -4,27 +4,25 @@
  */
 package edu.progavud.taller1.control;
 
-import edu.progavud.taller1.model.Usuario;
 import edu.progavud.taller1.view.VentanaPrincipal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
- * @author ACER NITRO
+ * @author crisc
  */
-public class ControlUsuario {
-    private Usuario usuario;
-    private VentanaPrincipal vistaPrincipal;
+public class ControlVentana implements ActionListener{
     private ControlPrincipal controlPrincipal;
+    private VentanaPrincipal vistaPrincipal;
     
-    public ControlUsuario(ControlPrincipal controlPrincipal, VentanaPrincipal vistaPrincipal) {
-        usuario = new Usuario("Cristian Bonilla", 100000, 20, true);
+    public ControlVentana(ControlPrincipal controlPrincipal, VentanaPrincipal vistaPrincipal) {
         this.controlPrincipal = controlPrincipal;
         this.vistaPrincipal = vistaPrincipal;
     }
     
-    public void cambiarPuntos(int puntosASumar) {
-        usuario.setCantidadPuntos(usuario.getCantidadPuntos() + puntosASumar);
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(e);
     }
-
     
 }
