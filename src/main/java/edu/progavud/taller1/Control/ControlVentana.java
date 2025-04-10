@@ -25,4 +25,8 @@ public class ControlVentana implements ActionListener{
         System.out.println(e);
     }
     
+    public void asignarOyentes() {
+        
+    }
+    
 }
