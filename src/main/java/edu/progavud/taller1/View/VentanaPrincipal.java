@@ -14,6 +14,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
+        setVisible(true);
         initComponents();
     }
 

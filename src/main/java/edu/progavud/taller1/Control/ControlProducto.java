@@ -17,7 +17,7 @@ public class ControlProducto {
     private ArrayList<Producto> arrayCombo5;
 
     public ControlProducto() {
-        this.vistaPrincipal = new VentanaPrincipal(this);
+        this.vistaPrincipal = new VentanaPrincipal();
         this.arrayCombo3 = new ArrayList<>();
         this.arrayCombo4 = new ArrayList<>();
         this.arrayCombo5 = new ArrayList<>();

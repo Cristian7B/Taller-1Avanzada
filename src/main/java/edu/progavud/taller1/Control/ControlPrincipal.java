@@ -36,7 +36,7 @@ public class ControlPrincipal implements ActionListener, InterfaceCreacion{
     private ControlPedido controlPedido;
 
     public ControlPrincipal(){
-        
+        vistaPrincipal = new VentanaPrincipal();
     }
 
     /**

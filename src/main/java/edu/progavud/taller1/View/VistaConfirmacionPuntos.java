@@ -14,6 +14,7 @@ public class VistaConfirmacionPuntos extends javax.swing.JFrame {
      * Creates new form VistaConfirmacionPuntos
      */
     public VistaConfirmacionPuntos() {
+        setVisible(true);
         initComponents();
     }
 
