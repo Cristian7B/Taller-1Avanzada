@@ -4,6 +4,8 @@
  */
 package edu.progavud.taller1.Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ACER NITRO
