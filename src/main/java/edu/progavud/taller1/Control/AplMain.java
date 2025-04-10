@@ -5,10 +5,12 @@
 package edu.progavud.taller1.Control;
 
 /**
+<<<<<<< HEAD
  *
  * @author ACER NITRO
  */
 public class AplMain {
     public static void main(String[] Args){
+        ControlPrincipal control = new ControlPrincipal();
     }
 }
