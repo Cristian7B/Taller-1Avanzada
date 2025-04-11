@@ -5,21 +5,18 @@
 package edu.progavud.taller1.control;
 
 import edu.progavud.taller1.model.Usuario;
-import edu.progavud.taller1.view.VentanaPrincipal;
 
 /**
  *
- * @author ACER NITRO
+ * @author Nicolas Velasco 
  */
 public class ControlUsuario {
     private Usuario usuario;
-    private VentanaPrincipal vistaPrincipal;
     private ControlPrincipal controlPrincipal;
     
-    public ControlUsuario(ControlPrincipal controlPrincipal, VentanaPrincipal vistaPrincipal) {
+    public ControlUsuario(ControlPrincipal controlPrincipal) {
         usuario = new Usuario("Cristian Bonilla", 100000, 20, true);
         this.controlPrincipal = controlPrincipal;
-        this.vistaPrincipal = vistaPrincipal;
     }
     
     public void cambiarPuntos(int puntosASumar) {

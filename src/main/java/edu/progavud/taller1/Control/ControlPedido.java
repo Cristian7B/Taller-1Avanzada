@@ -9,20 +9,16 @@ import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Gaseosa;
 import edu.progavud.taller1.model.Pedido;
 import edu.progavud.taller1.model.Producto;
-import edu.progavud.taller1.view.VentanaPrincipal;
-
 /**
  *
  * @author ACER NITRO
  */
 public class ControlPedido implements InterfaceCreacion{
     private ControlPrincipal controlPrincipal;
-    private VentanaPrincipal vistaPrincipal;
     private Pedido pedidoActual;
     
-    public ControlPedido(ControlPrincipal controlPrincipal, VentanaPrincipal vistaPrincipal) {
+    public ControlPedido(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
-        this.vistaPrincipal = vistaPrincipal;
         this.pedidoActual = new Pedido();
     }
     

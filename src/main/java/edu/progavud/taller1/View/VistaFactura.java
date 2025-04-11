@@ -5,13 +5,13 @@
 package edu.progavud.taller1.view;
 
 /**
- *
- * @author ACER NITRO
+ *  Clase de GUI para mostrar la factura en cada compra
+ * @author Nicolas Velasco
  */
 public class VistaFactura extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaFactura
+     * Método constructor
      */
     public VistaFactura() {
         setVisible(true);
@@ -229,9 +229,7 @@ public class VistaFactura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

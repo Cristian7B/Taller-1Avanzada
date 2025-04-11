@@ -4,13 +4,14 @@
  */
 package edu.progavud.taller1.Control;
 
+import edu.progavud.taller1.control.ControlPrincipal;
+
 /**
-<<<<<<< HEAD
  *
  * @author ACER NITRO
  */
 public class AplMain {
     public static void main(String[] Args){
-        ControlPrincipal control = new ControlPrincipal();
+        new ControlPrincipal();
     }
 }

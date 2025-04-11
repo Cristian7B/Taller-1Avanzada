@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import edu.progavud.taller1.model.Producto;
-import edu.progavud.taller1.view.VentanaPrincipal;
 
 /**
  * Clase encargada de la gestion y comunicacion 
@@ -20,10 +19,6 @@ import edu.progavud.taller1.view.VentanaPrincipal;
  */
 public class ControlPrincipal implements InterfaceCreacion{
     
-    /**
-     * Forma de comunicacion con la vista.
-     */
-    private VentanaPrincipal vistaPrincipal;
     /**
      * Forma en la que se accede y se controlan 
      * los atributos de los usuarios.
@@ -43,12 +38,10 @@ public class ControlPrincipal implements InterfaceCreacion{
     private ControlVentana controlVentana;
 
     public ControlPrincipal(){
-        vistaPrincipal = new VentanaPrincipal(this);
-        controlUsuario = new ControlUsuario(this, vistaPrincipal);
-        controlPedido = new ControlPedido(this, vistaPrincipal);
-        controlProducto = new ControlProducto(this, vistaPrincipal);
-        controlVentana = new ControlVentana(this, vistaPrincipal);
-        
+        controlUsuario = new ControlUsuario(this);
+        controlPedido = new ControlPedido(this);
+        controlProducto = new ControlProducto(this);
+        controlVentana = new ControlVentana(this);  
     }
 
     public void anadirProducto(Producto producto) {

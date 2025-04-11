@@ -6,7 +6,6 @@ package edu.progavud.taller1.control;
 
 import edu.progavud.taller1.model.Bucket;
 import edu.progavud.taller1.model.Producto;
-import edu.progavud.taller1.view.VentanaPrincipal;
 
 /**
  *
@@ -14,11 +13,9 @@ import edu.progavud.taller1.view.VentanaPrincipal;
  */
 public class ControlBucket {
     private ControlPrincipal controlPrincipal;
-    private VentanaPrincipal vistaPrincipal;
     private Bucket bucketActual;
     
-    public ControlBucket(VentanaPrincipal vistPrincipal, ControlPrincipal controlPrincipal) {
-        this.vistaPrincipal = vistPrincipal;
+    public ControlBucket(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
     }
     

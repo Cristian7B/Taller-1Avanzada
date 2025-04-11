@@ -7,7 +7,7 @@ package edu.progavud.taller1.control;
 import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Gaseosa;
 import edu.progavud.taller1.model.Producto;
-import edu.progavud.taller1.view.VentanaPrincipal;
+
 
 /**
  *
@@ -15,11 +15,9 @@ import edu.progavud.taller1.view.VentanaPrincipal;
  */
 public class ControlCombo {
     private ControlPrincipal controlPrincipal;
-    private VentanaPrincipal vistaPrincipal;
     private Combo comboActual;
     
-    public ControlCombo(VentanaPrincipal vistPrincipal, ControlPrincipal controlPrincipal) {
-        this.vistaPrincipal = vistPrincipal;
+    public ControlCombo(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
     }
     
