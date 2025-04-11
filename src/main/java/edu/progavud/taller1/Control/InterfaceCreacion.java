@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package edu.progavud.taller1.Control;
+package edu.progavud.taller1.control;
 
+import edu.progavud.taller1.model.Bucket;
+import edu.progavud.taller1.model.Combo;
 import java.util.ArrayList;
 
-import edu.progavud.taller1.Model.Producto;
+import edu.progavud.taller1.model.Producto;
 
 /**
  * Interface utilizada para el seguir
@@ -25,8 +27,14 @@ public interface InterfaceCreacion {
     public void anadirProducto(Producto productoNuevo);
     /**
      * Metodo generico para la adicion de 
-     * un array de productos.
-     * @param productoNuevo Array de Productos.
+     * un combo de productos.
+     * @param comboNuevo Combo de Productos.
      */
-    public void anadirProducto(ArrayList<Producto> productoNuevo);
+    void añadirCombo(Combo comboNuevo);
+    /**
+     * Metodo generico para la adicion de 
+     * un bucket de productos.
+     * @param bucketNuevo Bucket de Productos.
+     */
+    void añadirBucket(Bucket bucketNuevo);
 }

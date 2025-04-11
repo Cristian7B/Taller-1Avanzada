@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.progavud.taller1.Model;
+package edu.progavud.taller1.model;
+
+import java.awt.image.BufferedImage;
 
 import java.awt.image.BufferedImage;
 
@@ -13,18 +15,18 @@ import java.awt.image.BufferedImage;
 public class Producto {
     private String nombre;
     private String descripcion;
-    private BufferedImage imagenProducto;
+    private String rutaImagenProducto;
     private int precio;
     private int valorPuntos;
-    private int cantidadPuntos;
+    private int cantidad;
 
-    public Producto(String nombre, String descripcion, BufferedImage imagenProducto, int precio, int valorPuntos, int cantidadPuntos) {
+    public Producto(String nombre, String descripcion, String rutaImagenProducto, int precio, int valorPuntos, int cantidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.imagenProducto = imagenProducto;
+        this.rutaImagenProducto = rutaImagenProducto;
         this.precio = precio;
         this.valorPuntos = valorPuntos;
-        this.cantidadPuntos = cantidadPuntos;
+        this.cantidad = cantidad;
     }
 
     public String getNombre() {
@@ -43,12 +45,12 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public BufferedImage getImagenProducto() {
-        return imagenProducto;
+    public String getImagenProducto() {
+        return rutaImagenProducto;
     }
 
-    public void setImagenProducto(BufferedImage imagenProducto) {
-        this.imagenProducto = imagenProducto;
+    public void setImagenProducto(String rutaImagenProducto) {
+        this.rutaImagenProducto = rutaImagenProducto;
     }
 
     public int getPrecio() {
@@ -67,12 +69,12 @@ public class Producto {
         this.valorPuntos = valorPuntos;
     }
 
-    public int getCantidadPuntos() {
-        return cantidadPuntos;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setCantidadPuntos(int cantidadPuntos) {
-        this.cantidadPuntos = cantidadPuntos;
+    public void setCantidadPuntos(int cantidad) {
+        this.cantidad = cantidad;
     }
     
 }
