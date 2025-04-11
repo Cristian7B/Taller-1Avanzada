@@ -4,12 +4,15 @@
  */
 package edu.progavud.taller1.control;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
 import edu.progavud.taller1.View.VistaMantenimiento;
 import edu.progavud.taller1.View.VistaProducto;
 import edu.progavud.taller1.view.VentanaPrincipal;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -20,6 +23,9 @@ public class ControlVentana implements ActionListener{
     private VistaMantenimiento vistaMantenimiento;
     private VentanaPrincipal vistaPrincipal;
     private VistaProducto vistaProducto;
+
+
+
     public ControlVentana(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
         vistaPrincipal = new VentanaPrincipal(this);
@@ -32,7 +38,9 @@ public class ControlVentana implements ActionListener{
         String comando = e.getActionCommand();
         if (comando == "LLEVAR"){
             vistaPrincipal.setVisible(false);
-            vistaMantenimiento.setVisible(true);  
+            vistaMantenimiento.setVisible(true);
+            
+
         }else if (comando == "MESA"){
             vistaProducto.setVisible(true);
             vistaProducto.getPanelOpciones().setVisible(true);

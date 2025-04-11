@@ -4,12 +4,9 @@
  */
 package edu.progavud.taller1.control;
 
+import edu.progavud.taller1.Control.ControlLapso;
 import edu.progavud.taller1.model.Bucket;
 import edu.progavud.taller1.model.Combo;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import edu.progavud.taller1.model.Producto;
 
 /**
@@ -36,12 +33,18 @@ public class ControlPrincipal implements InterfaceCreacion{
      * Controller que gestiona eventos y oyentes
      */
     private ControlVentana controlVentana;
+    /**
+     * Controller que gestiona el lapso de tiempo
+     * entre acciones.
+     */
+    private ControlLapso controlLapso;
 
     public ControlPrincipal(){
         controlUsuario = new ControlUsuario(this);
         controlPedido = new ControlPedido(this);
         controlProducto = new ControlProducto(this);
         controlVentana = new ControlVentana(this);  
+        controlLapso = new ControlLapso(this);
     }
 
     public void anadirProducto(Producto producto) {
@@ -55,8 +58,5 @@ public class ControlPrincipal implements InterfaceCreacion{
     public void añadirBucket(Bucket bucketNuevo) {
         controlPedido.anadirProducto(bucketNuevo);
     }
-    
-    
 
-    
 }
