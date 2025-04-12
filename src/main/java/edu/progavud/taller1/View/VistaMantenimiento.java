@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * Esta clase
  * @author Nicolas Velasco
  */
-public class VistaMantenimiento extends javax.swing.JFrame {
+public class VistaMantenimiento extends javax.swing.JPanel {
     public VistaMantenimiento() {
         
         initComponents();
