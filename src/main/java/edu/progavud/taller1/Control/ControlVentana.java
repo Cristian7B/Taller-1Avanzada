@@ -9,9 +9,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import edu.progavud.taller1.View.VistaMantenimiento;
+
 import edu.progavud.taller1.View.VistaProducto;
 import edu.progavud.taller1.view.VentanaPrincipal;
+import javax.swing.Timer;
 
 
 /**
@@ -20,7 +21,6 @@ import edu.progavud.taller1.view.VentanaPrincipal;
  */
 public class ControlVentana implements ActionListener{
     private ControlPrincipal controlPrincipal;
-    private VistaMantenimiento vistaMantenimiento;
     private VentanaPrincipal vistaPrincipal;
     private VistaProducto vistaProducto;
 
@@ -29,32 +29,43 @@ public class ControlVentana implements ActionListener{
     public ControlVentana(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
         vistaPrincipal = new VentanaPrincipal(this);
-        vistaMantenimiento = new VistaMantenimiento(this);
         vistaProducto = new VistaProducto(this);
         asignarOyentes();
     }
     
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-        if (comando == "LLEVAR"){
-            vistaPrincipal.setVisible(false);
-            vistaMantenimiento.setVisible(true);
-            
+        switch (comando){
+            case "LLEVAR":
+                vistaPrincipal.setVisible(false);
 
-        }else if (comando == "MESA"){
-            vistaProducto.setVisible(true);
-            vistaProducto.getPanelOpciones().setVisible(true);
-            vistaPrincipal.setVisible(false);
-        }else if (comando == "MENU1"){
-            vistaMantenimiento.setVisible(false);
-            vistaPrincipal.setVisible(true);
-        }else if (comando == "SALIR"){
-            JOptionPane.showMessageDialog(null, "Hasta pronto",	"Salir", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }else if (comando == "COMBO"){
-            vistaProducto.getPanelOpciones().setVisible(false);
-            vistaProducto.getPanelProducto().setVisible(true);
+                timer();
+                break;
+            case "MESA":
+                vistaProducto.setVisible(true);
+                vistaProducto.getPanelOpciones().setVisible(true);
+                vistaPrincipal.setVisible(false);
+                break;
+            case "MENU1":
+                vistaPrincipal.setVisible(true);
+                break;
+            case "COMBO":
+                vistaProducto.getPanelOpciones().setVisible(false);
+                vistaProducto.getPanelProducto().setVisible(true);
+                break;
+            case "SALIR":
+                vistaPrincipal.anuncio("Hasta pronto", "SALIR");
+                System.exit(0);
+                break;
         }
+    }
+    public void timer(){
+        Timer timer = new Timer(60000, e -> {
+            vistaPrincipal.anuncio("No se usó durante el tiempo establecido", "INICIO");
+            vistaPrincipal.setVisible(true);
+        });
+        timer.setRepeats(false); // Solo una vez
+        timer.start();
     }
     
     public void asignarOyentes() {
