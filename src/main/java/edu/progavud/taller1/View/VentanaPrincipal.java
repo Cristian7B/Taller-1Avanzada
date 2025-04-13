@@ -142,14 +142,6 @@ public class VentanaPrincipal extends JFrame {
         JOptionPane.showMessageDialog(null, aviso, boton, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public ControlVentana getControlVentana() {
-        return controlVentana;
-    }
-
-    public void setControlVentana(ControlVentana controlVentana) {
-        this.controlVentana = controlVentana;
-    }
-
     public JButton getjButton1() {
         return jButton1;
     }

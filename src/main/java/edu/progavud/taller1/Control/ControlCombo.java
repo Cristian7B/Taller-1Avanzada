@@ -23,7 +23,7 @@ public class ControlCombo {
     
     public void anadirReferenciaCombo(Combo combo) {
         comboActual = combo;
-    }
+    } 
     
     public void cambiarTamanoGaseosa(String nuevoTamano) {
         Producto[] productos = comboActual.getProductosIncluidos();

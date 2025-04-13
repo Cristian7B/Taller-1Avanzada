@@ -31,12 +31,12 @@ public class ControlPedido implements InterfaceCreacion{
         actualizarPuntosYPrecio();
     }
     
-    public void añadirCombo(Combo comboNuevo) {
+    public void anadirCombo(Combo comboNuevo) {
         pedidoActual.getArrayProductos().add(comboNuevo);
         actualizarPuntosYPrecio();
     }
     
-    public void añadirBucket(Bucket bucketNuevo) {
+    public void anadirBucket(Bucket bucketNuevo) {
         pedidoActual.getArrayProductos().add(bucketNuevo);
         actualizarPuntosYPrecio();
     }

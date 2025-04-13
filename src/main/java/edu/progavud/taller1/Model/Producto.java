@@ -4,10 +4,6 @@
  */
 package edu.progavud.taller1.model;
 
-import java.awt.image.BufferedImage;
-
-import java.awt.image.BufferedImage;
-
 /**
  *
  * @author ACER NITRO
