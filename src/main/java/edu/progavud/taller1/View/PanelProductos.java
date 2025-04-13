@@ -259,7 +259,6 @@ public class PanelProductos extends JPanel {
     }
     
     public void cargarProductosCombo(Combo combo, int count) {
-        System.out.println("edu.progavud.taller1.View.PanelProductos.cargarProductosCombo() " + combo.getImagenProducto());
         ImageIcon icon = new ImageIcon(getClass().getResource(combo.getImagenProducto()));
         Image imgEscalada = icon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));

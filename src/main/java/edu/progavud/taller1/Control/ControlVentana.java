@@ -7,10 +7,8 @@ package edu.progavud.taller1.control;
 import edu.progavud.taller1.View.Ventana;
 import edu.progavud.taller1.model.Categoria;
 import edu.progavud.taller1.model.Combo;
-import edu.progavud.taller1.model.Producto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.Timer;
 
@@ -65,7 +63,7 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Combos");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
+                
                 vistaPrincipal.mostrarProductos();
                 for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
                     vistaPrincipal.getPanelProductos().cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i], i);
@@ -92,7 +90,7 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Hamburguesa");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
+                
                 vistaPrincipal.mostrarProductos();
                 for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
                     vistaPrincipal.getPanelProductos().cargarHamburguesas(categoriaIterar.getCategoria()[i], i);
@@ -119,7 +117,7 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Helados");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
+                
                 vistaPrincipal.mostrarProductos();
                 for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
                     vistaPrincipal.getPanelProductos().cargarHelados(categoriaIterar.getCategoria()[i], i);
@@ -134,7 +132,7 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Para Picar");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
+                
                 vistaPrincipal.mostrarProductos();
                 for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
                     vistaPrincipal.getPanelProductos().cargarPicar(categoriaIterar.getCategoria()[i], i);

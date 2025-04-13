@@ -15,6 +15,8 @@ import java.awt.Component;
 public class Ventana extends javax.swing.JFrame {
     private ControlVentana controlVentana;
     private PanelMantenimiento panelMantenimiento;
+    private PanelPagoTarjeta panelPagoTarjeta;
+
     private PanelOpciones panelOpciones;
     private PanelProductos panelProductos;
     private JPanel panelPrincipal;
@@ -35,6 +37,8 @@ public class Ventana extends javax.swing.JFrame {
     private static final String CARD_MANTENIMIENTO = "mantenimiento";
     private static final String CARD_OPCIONES = "opciones";
     private static final String CARD_PRODUCTOS = "productos";
+    private static final String CARD_PAGO_TARJETA = "pagoTarjeta";
+
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
@@ -151,6 +155,7 @@ public class Ventana extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(900, 600));
         
         panelPrincipal = new JPanel(new BorderLayout());
+        panelPagoTarjeta = new PanelPagoTarjeta();
         
         atras = new JButton("Atrás");
         atras.setBackground(new Color(0x387780));
@@ -188,6 +193,8 @@ public class Ventana extends javax.swing.JFrame {
         panelContenido.add(panelMantenimiento, CARD_MANTENIMIENTO);
         panelContenido.add(panelOpciones, CARD_OPCIONES);
         panelContenido.add(panelProductos, CARD_PRODUCTOS);
+        panelContenido.add(panelPagoTarjeta, CARD_PAGO_TARJETA);
+
         
         panelBoton.setVisible(false);
         panelPrincipal.add(panelBoton, BorderLayout.WEST);
@@ -201,6 +208,12 @@ public class Ventana extends javax.swing.JFrame {
         
         pack();
     }
+    
+    public void mostrarPagoTarjeta() {
+        CardLayout cl = (CardLayout)(panelContenido.getLayout());
+        cl.show(panelContenido, CARD_PAGO_TARJETA);
+    }
+
     
     private void crearPanelInicio() {
       
