@@ -71,6 +71,13 @@ public class ControlVentana implements ActionListener{
                     vistaPrincipal.getPanelProductos().cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i], i);
                     vistaPrincipal.getPanelProductos().botonesCombo.get(i).setActionCommand("Combo" + i);
                     vistaPrincipal.getPanelProductos().botonesCombo.get(i).addActionListener(this);
+                    
+                    vistaPrincipal.getPanelProductos().checkboxesExtraChips.get(i).addActionListener(this);
+                    vistaPrincipal.getPanelProductos().checkboxesExtraChips.get(i).setActionCommand("ComboCheckChips"+i);
+                    vistaPrincipal.getPanelProductos().checkboxesExtraQueso.get(i).addActionListener(this);
+                    vistaPrincipal.getPanelProductos().checkboxesExtraQueso.get(i).setActionCommand("ComboCheckQueso"+i);
+                    vistaPrincipal.getPanelProductos().checkboxesGaseosaGrande.get(i).addActionListener(this);
+                    vistaPrincipal.getPanelProductos().checkboxesGaseosaGrande.get(i).setActionCommand("ComboCheckGaseosa"+i);
                 }
                 break;
 
@@ -173,26 +180,75 @@ public class ControlVentana implements ActionListener{
                 break;
 
             case "Combo0":
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraChips.get(0).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Chips ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraQueso.get(0).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Queso ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesGaseosaGrande.get(0).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Gaseosa");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).cambiarPrecio();
+                }
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[0].getNombre());
                 vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
+                
                 break;
             case "Combo1":
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraChips.get(1).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Chips ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraQueso.get(1).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Queso ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesGaseosaGrande.get(1).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Gaseosa");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]).cambiarPrecio();
+                }
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[1].getNombre());
                 vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Combo2":
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraChips.get(2).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Chips ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraQueso.get(2).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Queso ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesGaseosaGrande.get(2).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Gaseosa");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]).cambiarPrecio();
+                }
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[2].getNombre());
                 vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Combo3":
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraChips.get(3).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Chips ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesExtraQueso.get(3).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Queso ");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]).cambiarPrecio();
+                }
+                if(vistaPrincipal.getPanelProductos().checkboxesGaseosaGrande.get(3).isSelected()) {
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]).setAdiciones(((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]).getAdiciones() + "Gaseosa");
+                    ((Combo) controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]).cambiarPrecio();
+                }
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[3].getNombre());
                 vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
-
+                
             case "Helados0":                
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Helados").getCategoria()[0]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Helados").getCategoria()[0].getNombre());

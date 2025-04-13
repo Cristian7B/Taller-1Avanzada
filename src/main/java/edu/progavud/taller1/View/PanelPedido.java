@@ -65,6 +65,7 @@ public class PanelPedido extends JPanel {
     public void limpiarPedido() {
         removeAll();
         add(lblTitulo);
+        subTotal.setText("Total: $0");
         add(subTotal);
 
         revalidate();

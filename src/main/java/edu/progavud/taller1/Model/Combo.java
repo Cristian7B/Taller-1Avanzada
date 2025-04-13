@@ -35,11 +35,13 @@ public class Combo extends Producto {
     
     public void cambiarPrecio() {
         super.setPrecio(
+            super.getPrecio() +
             this.productosIncluidos[0].getPrecio() +
             adiciones.split(" ").length * 2000 + 
             this.productosIncluidos[1].getPrecio()
         );
     }
+    
 
     public void setProductosIncluidos(Producto[] productosIncluidos) {
         this.productosIncluidos = productosIncluidos;
