@@ -243,7 +243,10 @@ public class Ventana extends javax.swing.JFrame {
     }
     
     
-    
+    public void mostrarFactura() {
+        CardLayout cl = (CardLayout)(panelContenido.getLayout());
+        cl.show(panelContenido, CARD_FACTURA);
+    }
     /**
      * Creates new form Ventana
      */

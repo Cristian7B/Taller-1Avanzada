@@ -3,6 +3,7 @@ package edu.progavud.taller1.control;
 import edu.progavud.taller1.View.Ventana;
 import edu.progavud.taller1.model.Categoria;
 import edu.progavud.taller1.model.Combo;
+import edu.progavud.taller1.model.Producto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -311,6 +312,19 @@ public class ControlVentana implements ActionListener {
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Pollos").getCategoria()[2].getNombre());
                 vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
+            case "PAGO":
+                timer.stop();
+                for (Producto p: controlPrincipal.obtenerProductosPedido()){
+                    controlPrincipal.anadirProductoFactura(p);
+                }
+                vistaPrincipal.mostrarFactura();
+                timer = usarTimer();
+                break;
+            case "TARJETA":
+                break;
+            case "EFECTIVO":
+                break;
+                
         }
     }
     
