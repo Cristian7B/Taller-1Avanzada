@@ -142,7 +142,45 @@ public class ControlPrincipal implements InterfaceCreacion{
         controlPedido.anadirProducto(producto);
         controlPedido.actualizarPuntosYPrecio();
     }
-    
+    public void anadirProductoFactura(Producto producto){
+        controlVentana.getVistaPrincipal().getPanelFactura().anadirProductoFactura(producto);
+    }
+    public void anadirBucketFactura(Bucket bucket){
+        controlVentana.getVistaPrincipal().getPanelFactura().anadirBucketFactura(bucket);
+
+    }
+    public void anadirComboFactura(Combo combo){
+        controlVentana.getVistaPrincipal().getPanelFactura().anadirComboFactura(combo);
+    }
+            
+    public ArrayList anadirNombreFactura(Producto producto){
+        ArrayList<String> nombres = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            nombres.add(p.getNombre());
+        }
+        return nombres;
+    }
+    public ArrayList anadirValorUnitarioFactura(Producto producto){
+        ArrayList<String> valores = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            valores.add(p.getNombre());
+        }
+        return valores;
+    }
+    public ArrayList anadirCantidadFactura(Producto producto){
+        ArrayList<String> cantidades = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            cantidades.add(p.getNombre());
+        }
+        return cantidades;
+    }
+    public ArrayList anadirPrecioTFactura(Producto producto){
+        ArrayList<String> precioT = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            precioT.add(p.getNombre());
+        }
+        return precioT;
+    }
     /**
      * Añade un combo.
      * @param comboNuevo    combo a añadir.

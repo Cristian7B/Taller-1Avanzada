@@ -13,13 +13,15 @@ import java.awt.Component;
  * @author crisc
  */
 public class Ventana extends javax.swing.JFrame {
+
     private ControlVentana controlVentana;
     private PanelMantenimiento panelMantenimiento;
     private PanelOpciones panelOpciones;
     private PanelProductos panelProductos;
+    private PanelPedido panelPedido;
     private JPanel panelPrincipal;
     private JPanel panelContenido;
-    private PanelPedido panelPedido;
+    private PanelFactura panelFactura;
     public JButton atras;
     private JPanel panelBoton;
 
@@ -30,7 +32,7 @@ public class Ventana extends javax.swing.JFrame {
     public void setPanelPedido(PanelPedido panelPedido) {
         this.panelPedido = panelPedido;
     }
-
+    private static final String CARD_FACTURA = "factura";
     private static final String CARD_INICIO = "inicio";
     private static final String CARD_MANTENIMIENTO = "mantenimiento";
     private static final String CARD_OPCIONES = "opciones";
@@ -131,6 +133,110 @@ public class Ventana extends javax.swing.JFrame {
     public void setPanelBoton(JPanel panelBoton) {
         this.panelBoton = panelBoton;
     }
+
+    public ControlVentana getControlVentana() {
+        return controlVentana;
+    }
+
+    public void setControlVentana(ControlVentana controlVentana) {
+        this.controlVentana = controlVentana;
+    }
+
+    public JPanel getPanelContenido() {
+        return panelContenido;
+    }
+
+    public void setPanelContenido(JPanel panelContenido) {
+        this.panelContenido = panelContenido;
+    }
+
+    public PanelFactura getPanelFactura() {
+        return panelFactura;
+    }
+
+    public void setPanelFactura(PanelFactura panelFactura) {
+        this.panelFactura = panelFactura;
+    }
+
+    public JButton getAtras() {
+        return atras;
+    }
+
+    public void setAtras(JButton atras) {
+        this.atras = atras;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JSeparator getjSeparator1() {
+        return jSeparator1;
+    }
+
+    public void setjSeparator1(JSeparator jSeparator1) {
+        this.jSeparator1 = jSeparator1;
+    }
     
     
     
@@ -189,10 +295,15 @@ public class Ventana extends javax.swing.JFrame {
         panelContenido.add(panelOpciones, CARD_OPCIONES);
         panelContenido.add(panelProductos, CARD_PRODUCTOS);
         
+        
         panelBoton.setVisible(false);
         panelPrincipal.add(panelBoton, BorderLayout.WEST);
         panelPrincipal.add(panelContenido, BorderLayout.CENTER);
         
+        panelFactura = new PanelFactura();
+        panelFactura.setBackground(new Color(255, 87, 20));
+        panelContenido.add(panelFactura, CARD_FACTURA);
+
         
         getContentPane().add(panelPrincipal);
         
@@ -201,7 +312,11 @@ public class Ventana extends javax.swing.JFrame {
         
         pack();
     }
-    
+    public void mostrarFactura() {
+        CardLayout cl = (CardLayout)(panelContenido.getLayout());
+        cl.show(panelContenido, CARD_FACTURA);
+    }
+
     private void crearPanelInicio() {
       
         jPanel1 = new JPanel();

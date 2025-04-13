@@ -11,6 +11,8 @@ public class PanelPedido extends JPanel {
     
     private JLabel lblTitulo;
     private JLabel subTotal;
+    public JButton botonPago;
+    private JPanel panelBoton;
 
     public PanelPedido() {
         initComponents();
@@ -50,6 +52,15 @@ public class PanelPedido extends JPanel {
         
         add(lblTitulo);
         add(subTotal);
+        
+        botonPago = new JButton("Pago");
+        botonPago.setPreferredSize(new Dimension(120, 40));
+
+        panelBoton = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 15));
+        panelBoton.setBackground(new Color(0xFF5714));
+        panelBoton.add(botonPago);
+
+        add(panelBoton, BorderLayout.SOUTH);
     }
 
     public void anadirJLabel(String nombreProducto) {

@@ -219,6 +219,18 @@ public class ControlVentana implements ActionListener {
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[2]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[2].getNombre());
                 break;
+            case "PAGO":
+                timer.stop();
+                for (Producto p: controlPrincipal.obtenerProductosPedido()){
+                    controlPrincipal.anadirProductoFactura(p);
+                }
+                vistaPrincipal.mostrarFactura();
+                timer = usarTimer();
+                break;
+            case "TARJETA":
+                break;
+            case "EFECTIVO":
+                break;
         }
     }
     
@@ -251,6 +263,15 @@ public class ControlVentana implements ActionListener {
         vistaPrincipal.getPanelOpciones().botonPicar.addActionListener(this);
 
         vistaPrincipal.atras.setActionCommand("ATRAS");
+        vistaPrincipal.atras.addActionListener(this);
+        
+        vistaPrincipal.getPanelPedido().botonPago.setActionCommand("PAGO");
+        vistaPrincipal.getPanelPedido().botonPago.addActionListener(this);
+        
+        vistaPrincipal.getPanelFactura().botonEfectivo.setActionCommand("EFECTIVO");
+        vistaPrincipal.getPanelFactura().botonEfectivo.addActionListener(this);
+        vistaPrincipal.getPanelFactura().botonTarjeta.setActionCommand("TARJETA");
+        vistaPrincipal.getPanelFactura().botonTarjeta.addActionListener(this);
     }
     
     /**
@@ -273,4 +294,30 @@ public class ControlVentana implements ActionListener {
         timer.start();
         return timer;
     }
+
+    public ControlPrincipal getControlPrincipal() {
+        return controlPrincipal;
+    }
+
+    public void setControlPrincipal(ControlPrincipal controlPrincipal) {
+        this.controlPrincipal = controlPrincipal;
+    }
+
+    public Ventana getVistaPrincipal() {
+        return vistaPrincipal;
+    }
+
+    public void setVistaPrincipal(Ventana vistaPrincipal) {
+        this.vistaPrincipal = vistaPrincipal;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+    
+    
 }

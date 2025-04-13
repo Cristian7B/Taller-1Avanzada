@@ -30,6 +30,7 @@ public class PanelFactura extends JPanel{
     public JButton botonEfectivo;
     public JButton botonTarjeta;
     public PanelFactura(){
+        setBackground(Color.red);
         inicializarComponentes();
         setVisible(true);
     }
@@ -47,6 +48,14 @@ public class PanelFactura extends JPanel{
         contenedorProductos = new JPanel();
         contenedorProductos.setLayout(new BoxLayout(contenedorProductos, BoxLayout.Y_AXIS)); // Vertical
         add(contenedorProductos, BorderLayout.CENTER);
+        
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        botonEfectivo = new JButton("EFECTIVO");
+        botonTarjeta = new JButton("TARJETA");
+        panelBotones.add(botonEfectivo);
+        panelBotones.add(botonTarjeta);
+        
+        add(panelBotones, BorderLayout.SOUTH);
     }
 
     public void anadirProductoFactura(Producto producto){
