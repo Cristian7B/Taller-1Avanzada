@@ -11,17 +11,28 @@ import java.util.ArrayList;
  * @author crisc
  */
 public class Categoria {
-    private ArrayList<Producto> categoria;
+    private Producto[] categoria;
+    private String nombreCategoria;
     
-    public Categoria(ArrayList<Producto> categoria) {
+    public Categoria(Producto[] categoria, String nombreCategoria) {
         this.categoria = categoria;
+        this.nombreCategoria = nombreCategoria;
     }
 
-    public ArrayList<Producto> getCategoria() {
+    public String getNombreCategoria() {
+        return nombreCategoria;
+    }
+
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
+    }
+    
+
+    public Producto[] getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(ArrayList<Producto> categoria) {
+    public void setCategoria(Producto[] categoria) {
         this.categoria = categoria;
     }
     

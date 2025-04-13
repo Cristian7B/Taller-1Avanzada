@@ -16,6 +16,8 @@ public class VistaEdicionProducto extends javax.swing.JFrame {
     public VistaEdicionProducto() {
         setVisible(true);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

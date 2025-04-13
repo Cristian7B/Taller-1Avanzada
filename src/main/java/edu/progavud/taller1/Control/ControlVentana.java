@@ -6,6 +6,8 @@ package edu.progavud.taller1.control;
 
 import edu.progavud.taller1.View.VistaMantenimiento;
 import edu.progavud.taller1.View.VistaProducto;
+import edu.progavud.taller1.model.Categoria;
+import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.view.VentanaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,24 +30,62 @@ public class ControlVentana implements ActionListener{
         asignarOyentes();
     }
     
+    /* Snippet of the actionPerformed method in ControlVentana */
+
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
         if (comando == "LLEVAR"){
             vistaPrincipal.setVisible(false);
             vistaMantenimiento.setVisible(true);  
-        }else if (comando == "MESA"){
+        } else if (comando == "MESA"){
             vistaProducto.setVisible(true);
-            vistaProducto.getPanelOpciones().setVisible(true);
+            vistaProducto.mostrarCategorias();
             vistaPrincipal.setVisible(false);
-        }else if (comando == "MENU1"){
+        } else if (comando == "MENU1"){
             vistaMantenimiento.setVisible(false);
             vistaPrincipal.setVisible(true);
-        }else if (comando == "SALIR"){
-            JOptionPane.showMessageDialog(null, "Hasta pronto",	"Salir", JOptionPane.INFORMATION_MESSAGE);
+        } else if (comando == "SALIR"){
+            JOptionPane.showMessageDialog(null, "Hasta pronto", "Salir", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
-        }else if (comando == "COMBO"){
-            vistaProducto.getPanelOpciones().setVisible(false);
-            vistaProducto.getPanelProducto().setVisible(true);
+        } else if (comando == "COMBO"){
+            vistaProducto.getPanelProducto().resetear();
+            Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Combos");
+            System.out.println("Entro" + categoriaIterar.getCategoria());
+            vistaProducto.mostrarProductos();
+            for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                vistaProducto.getPanelProducto().cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i]);
+            }
+        } else if (comando == "BUCKET"){
+            
+        } else if (comando == "HAMBURGUESA"){
+            vistaProducto.getPanelProducto().resetear();
+            Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Hamburguesa");
+            System.out.println("Entro" + categoriaIterar.getCategoria());
+            vistaProducto.mostrarProductos();
+            for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                vistaProducto.getPanelProducto().cargarProductosNormales(categoriaIterar.getCategoria()[i]);
+            }
+        } else if (comando == "POLLO"){
+            
+        } else if (comando == "HELADO"){
+            vistaProducto.getPanelProducto().resetear();
+            Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Helados");
+            System.out.println("Entro" + categoriaIterar.getCategoria());
+            vistaProducto.mostrarProductos();
+            for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                vistaProducto.getPanelProducto().cargarProductosNormales(categoriaIterar.getCategoria()[i]);
+            }
+            
+        } else if (comando == "PICAR"){
+            vistaProducto.getPanelProducto().resetear();
+            Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Para Picar");
+            System.out.println("Entro" + categoriaIterar.getCategoria());
+            vistaProducto.mostrarProductos();
+            for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                vistaProducto.getPanelProducto().cargarProductosNormales(categoriaIterar.getCategoria()[i]);
+            }
+        } else if (comando == "ATRAS") {
+            vistaProducto.mostrarCategorias();       
         }
     }
     
@@ -75,6 +115,7 @@ public class ControlVentana implements ActionListener{
         vistaProducto.getPanelOpciones().botonHelado.addActionListener(this);
         vistaProducto.getPanelOpciones().botonPicar.setActionCommand("PICAR");
         vistaProducto.getPanelOpciones().botonPicar.addActionListener(this);
-        
+        vistaProducto.atras.addActionListener(this);
+        vistaProducto.atras.setActionCommand("ATRAS");
     }
 }
