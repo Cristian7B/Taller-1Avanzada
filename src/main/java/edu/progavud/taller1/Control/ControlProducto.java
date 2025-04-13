@@ -51,6 +51,16 @@ public class ControlProducto {
         return paraPicarIniciales;
     }
     
+    public Producto[] crearPollo() {
+        Producto[] polloIniciales = {
+            new Producto("Alitas completas", "10 Alitas de pollo con salsa", "/assets/pollo/Alitas#1.png", 8000, 600, 0),
+            new Producto("Nuggets", "15 Piezas de nuggets para disfrutar", "/assets/pollo/Nuggets#3.png", 9000, 700, 0),
+            new Producto("Popcorn", "20 Piezas de pollo pequeñas", "/assets/pollo/Popcorn#2.png", 7000, 650, 0),
+        };
+        
+        return polloIniciales;
+    }
+    
     public Producto[] crearContenidoCombo(String nombreProducto, String descripcionProducto, String rutaImagenProducto,
                                           String nombreGaseosa, String descripcionGaseosa, String tamanoGaseosa,
                                           String nombrePapas, String descripcionPapas) {

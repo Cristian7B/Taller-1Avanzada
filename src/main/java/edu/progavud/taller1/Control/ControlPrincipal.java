@@ -66,6 +66,7 @@ public class ControlPrincipal implements InterfaceCreacion{
         controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearHelados(), "Helados"));
         controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearParaPicar(), "Para Picar"));
         controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlCombo.crearCombos(), "Combos"));
+        controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearPollo(), "Pollos"));
     }
     
     public Categoria obtenerCategoria(String categoria) {
@@ -84,6 +85,8 @@ public class ControlPrincipal implements InterfaceCreacion{
             case "Combos":
                 categoriaEncontrada = controlCatalogo.obtenerCategoria(3);
                 break;
+            case "Pollos":
+                categoriaEncontrada = controlCatalogo.obtenerCategoria(4);
         }
         
         return categoriaEncontrada;
@@ -102,6 +105,10 @@ public class ControlPrincipal implements InterfaceCreacion{
     
     public void crearPedido() {
         controlPedido.crearPedido();
+    }
+    
+    public int retonarPrecioPedido() {
+        return controlPedido.obtenerPrecio();
     }
     
     public ArrayList<Producto> obtenerProductosPedido() {

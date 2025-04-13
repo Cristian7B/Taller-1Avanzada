@@ -43,7 +43,7 @@ public class PanelPedido extends JPanel {
         lblTitulo.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
         
         subTotal = new JLabel("Total: 0$");
-        subTotal.setFont(new Font("SansSerif", Font.BOLD, 20));
+        subTotal.setFont(new Font("SansSerif", Font.BOLD, 18));
         subTotal.setForeground(new Color(241, 241, 233));
         subTotal.setAlignmentX(CENTER_ALIGNMENT);
         subTotal.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));

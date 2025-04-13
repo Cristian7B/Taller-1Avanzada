@@ -17,6 +17,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -29,6 +30,31 @@ public class PanelProductos extends JPanel {
     public ArrayList<JButton> botonesCombo;
     public ArrayList<JButton> botonesPicar;
     public ArrayList<JButton> botonesHelado;
+    public ArrayList<JButton> botonesPollo;
+    public ArrayList<JCheckBox> checkboxesExtraQueso;
+    public ArrayList<JCheckBox> checkboxesExtraChips;
+    public ArrayList<JCheckBox> checkboxesGaseosaGrande;
+
+    public void inicializarCheckboxesAdiciones() {
+        checkboxesExtraQueso = new ArrayList<>();
+        checkboxesExtraQueso.add(new JCheckBox("Extra Queso"));
+        checkboxesExtraQueso.add(new JCheckBox("Extra Queso"));
+        checkboxesExtraQueso.add(new JCheckBox("Extra Queso"));
+        checkboxesExtraQueso.add(new JCheckBox("Extra Queso"));
+
+        checkboxesExtraChips = new ArrayList<>();
+        checkboxesExtraChips.add(new JCheckBox("Extra Chips"));
+        checkboxesExtraChips.add(new JCheckBox("Extra Chips"));
+        checkboxesExtraChips.add(new JCheckBox("Extra Chips"));
+        checkboxesExtraChips.add(new JCheckBox("Extra Chips"));
+
+        checkboxesGaseosaGrande = new ArrayList<>();
+        checkboxesGaseosaGrande.add(new JCheckBox("Gaseosa Grande"));
+        checkboxesGaseosaGrande.add(new JCheckBox("Gaseosa Grande"));
+        checkboxesGaseosaGrande.add(new JCheckBox("Gaseosa Grande"));
+        checkboxesGaseosaGrande.add(new JCheckBox("Gaseosa Grande"));
+    }
+
     
     public PanelProductos() {
         setLayout(new GridLayout(2, 2, 10, 10));
@@ -43,6 +69,10 @@ public class PanelProductos extends JPanel {
         anadirBotonesPicar();
         botonesHelado = new ArrayList<>();
         anadirBotonesHelado();
+        botonesPollo = new ArrayList<>();
+        anadirBotonesPollo();
+        
+        inicializarCheckboxesAdiciones();
     }
     
     public void anadirBotonesHamburguesa() {
@@ -51,6 +81,14 @@ public class PanelProductos extends JPanel {
         botonesHamburguesa.add(new JButton("Añadir"));
         botonesHamburguesa.add(new JButton("Añadir"));
     }
+    
+    public void anadirBotonesPollo() {
+        botonesPollo.add(new JButton("Añadir"));
+        botonesPollo.add(new JButton("Añadir"));
+        botonesPollo.add(new JButton("Añadir"));
+        botonesPollo.add(new JButton("Añadir"));
+    }
+    
     
     public void anadirBotonesCombo() {
         botonesCombo.add(new JButton("Añadir"));
@@ -112,6 +150,42 @@ public class PanelProductos extends JPanel {
 
         add(celda);
     }
+    
+    public void cargarPollos(Producto producto, int count) {
+        ImageIcon icon = new ImageIcon(getClass().getResource(producto.getImagenProducto()));
+        Image imgEscalada = icon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
+        lblImagen.setHorizontalAlignment(JLabel.CENTER);
+
+
+        JPanel celda = new JPanel(new BorderLayout(5, 5));
+        celda.setBackground(new Color(255, 214, 58)); 
+        celda.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JPanel panelTextos = new JPanel();
+        panelTextos.setLayout(new BoxLayout(panelTextos, BoxLayout.Y_AXIS));
+        panelTextos.setBackground(new Color(255, 214, 58));
+
+        String title = producto.getNombre();
+        String description = producto.getDescripcion();
+
+        JLabel lblTitulo = new JLabel(title);
+        lblTitulo.setFont(new Font("Showcard Gothic", Font.BOLD, 16));
+
+        JLabel lblDescripcion = new JLabel(description);
+        lblDescripcion.setFont(new Font("Arial", Font.PLAIN, 12));
+
+        panelTextos.add(lblTitulo);
+        panelTextos.add(Box.createVerticalStrut(5));
+        panelTextos.add(lblDescripcion);
+        
+        celda.add(lblImagen, BorderLayout.WEST);
+        celda.add(panelTextos, BorderLayout.CENTER);
+        celda.add(botonesPollo.get(count), BorderLayout.SOUTH);
+
+        add(celda);
+    }
+
 
     public void cargarHelados(Producto producto, int count) {
         ImageIcon icon = new ImageIcon(getClass().getResource(producto.getImagenProducto()));
@@ -215,7 +289,17 @@ public class PanelProductos extends JPanel {
         celda.add(lblImagen, BorderLayout.WEST);
         celda.add(panelTextos, BorderLayout.CENTER);
         celda.add(botonesCombo.get(count), BorderLayout.SOUTH);
-        //Espacio para la creación de las adiciones, checkboxes
+        
+        JPanel panelAdiciones = new JPanel();
+        panelAdiciones.setBackground(new Color(255, 214, 58));
+        panelAdiciones.setLayout(new BoxLayout(panelAdiciones, BoxLayout.Y_AXIS));
+        panelAdiciones.add(checkboxesExtraQueso.get(count));
+        panelAdiciones.add(checkboxesExtraChips.get(count));
+        panelAdiciones.add(checkboxesGaseosaGrande.get(count));
+
+        celda.add(panelAdiciones, BorderLayout.EAST);
+
+        
         add(celda);
     }
 

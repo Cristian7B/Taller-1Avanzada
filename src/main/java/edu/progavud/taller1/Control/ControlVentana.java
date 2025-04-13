@@ -34,7 +34,6 @@ public class ControlVentana implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-        System.out.println("Comando: " + e);
         switch (comando) {
             case "LLEVAR":
                 timer.stop();
@@ -76,7 +75,6 @@ public class ControlVentana implements ActionListener{
                 break;
 
             case "BUCKET":
-                // Aquí deberías implementar la carga de productos tipo BUCKET
                 timer.stop();
                 timer = usarTimer();
                 vistaPrincipal.mostrarProductos();
@@ -97,10 +95,16 @@ public class ControlVentana implements ActionListener{
                 break;
 
             case "POLLO":
-                
                 timer.stop();
-                vistaPrincipal.mostrarProductos();
                 timer = usarTimer();
+                vistaPrincipal.getPanelProductos().resetear();
+                categoriaIterar = controlPrincipal.obtenerCategoria("Pollos");
+                vistaPrincipal.mostrarProductos();
+                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos().cargarPollos(categoriaIterar.getCategoria()[i], i);
+                    vistaPrincipal.getPanelProductos().botonesPollo.get(i).setActionCommand("Pollo" + i);
+                    vistaPrincipal.getPanelProductos().botonesPollo.get(i).addActionListener(this);
+                }
                 break;
 
             case "HELADO":
@@ -150,61 +154,90 @@ public class ControlVentana implements ActionListener{
             case "Hamburguesa0":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[0]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[0].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Hamburguesa1":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[1]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[1].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Hamburguesa2":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[2]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[2].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Hamburguesa3":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[3]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[3].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
 
             case "Combo0":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[0].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Combo1":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[1].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Combo2":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[2].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Combo3":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[3].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
 
             case "Helados0":                
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Helados").getCategoria()[0]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Helados").getCategoria()[0].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Helados1":                
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Helados").getCategoria()[1]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Helados").getCategoria()[1].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Helados2":                
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Helados").getCategoria()[2]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Helados").getCategoria()[2].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
 
             case "Picar0":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[0]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[0].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Picar1":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[1]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[1].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
             case "Picar2":
                 controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[2]);
                 vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[2].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
+                break;
+            case "Pollo0":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Pollos").getCategoria()[0]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Pollos").getCategoria()[0].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
+                break;
+            case "Pollo1":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Pollos").getCategoria()[1]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Pollos").getCategoria()[1].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
+                break;
+            case "Pollo2":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Pollos").getCategoria()[2]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Pollos").getCategoria()[2].getNombre());
+                vistaPrincipal.getPanelPedido().setSubTotal("Total: $" + controlPrincipal.retonarPrecioPedido());
                 break;
         }
     }

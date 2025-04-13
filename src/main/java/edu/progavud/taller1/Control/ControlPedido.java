@@ -27,6 +27,10 @@ public class ControlPedido implements InterfaceCreacion{
         return pedidoActual;
     }
     
+    public int obtenerPrecio() {
+        return pedidoActual.getValorTotal();
+    }
+    
     public void crearPedido() {
         pedidoActual = new Pedido();
     }
