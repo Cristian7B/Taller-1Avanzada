@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package edu.progavud.taller1.control;
 
 import edu.progavud.taller1.View.Ventana;
@@ -9,26 +5,49 @@ import edu.progavud.taller1.model.Categoria;
 import edu.progavud.taller1.model.Combo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Timer;
 
-
 /**
- *
- * @author crisc
+ * Controlador de la única ventana principal de la aplicación. 
+ * Se encarga de delegar la visualización de los distintos paneles sobre un único JFrame,
+ * así como de gestionar la inactividad mediante un temporizador Swing.
+ * 
+ * @author Cristian Bonilla
  */
-public class ControlVentana implements ActionListener{
+public class ControlVentana implements ActionListener {
+    
+    /** 
+     * Controlador principal de la aplicación, desde el cual se obtienen datos del modelo. 
+     */
     private ControlPrincipal controlPrincipal;
+    
+    /** 
+     * Vista principal donde se muestran todos los paneles. 
+     */
     private Ventana vistaPrincipal;
-    Timer timer;
+    
+    /** Temporizador Swing para detectar inactividad y volver al panel de inicio. */
+    private Timer timer;
 
+    /**
+     * Crea un nuevo controlador de ventana.
+     * Inicializa la vista, asigna los oyentes de los botones y prepara un temporizador inactivo.
+     * 
+     * @param controlPrincipal instancia del controlPrincipal que provee acceso al modelo.
+     */
     public ControlVentana(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
-        vistaPrincipal = new Ventana(this);
+        this.vistaPrincipal = new Ventana(this);
         asignarOyentes();
-        timer = new javax.swing.Timer(0, null);
+        this.timer = new Timer(0, null);
     }
     
+    /**
+     * Maneja los eventos de acción disparados por los botones de la interfaz.
+     * Según el comando de acción, cambia de panel o realiza otras acciones
+     * 
+     * @param e evento de acción que contiene el comando String a procesar.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
@@ -63,15 +82,14 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Combos");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
                 vistaPrincipal.mostrarProductos();
-                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos().cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i], i);
+                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos()
+                                 .cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i], i);
                 }
                 break;
 
             case "BUCKET":
-                // Aquí deberías implementar la carga de productos tipo BUCKET
                 timer.stop();
                 timer = usarTimer();
                 vistaPrincipal.mostrarProductos();
@@ -82,15 +100,14 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Hamburguesa");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
                 vistaPrincipal.mostrarProductos();
-                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos().cargarHamburguesas(categoriaIterar.getCategoria()[i], i);
+                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos()
+                                 .cargarHamburguesas(categoriaIterar.getCategoria()[i], i);
                 }
                 break;
 
             case "POLLO":
-                // Aquí deberías implementar la carga de productos tipo POLLO
                 timer.stop();
                 vistaPrincipal.mostrarProductos();
                 timer = usarTimer();
@@ -101,12 +118,11 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Helados");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
                 vistaPrincipal.mostrarProductos();
-                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos().cargarHelados(categoriaIterar.getCategoria()[i], i);
+                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos()
+                                 .cargarHelados(categoriaIterar.getCategoria()[i], i);
                 }
-                
                 break;
 
             case "PICAR":
@@ -114,12 +130,11 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Para Picar");
-                System.out.println("Entro" + categoriaIterar.getCategoria());
                 vistaPrincipal.mostrarProductos();
-                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos().cargarPicar(categoriaIterar.getCategoria()[i], i);
+                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos()
+                                 .cargarPicar(categoriaIterar.getCategoria()[i], i);
                 }
-                
                 break;
 
             case "ATRAS":
@@ -127,28 +142,30 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 if (vistaPrincipal.getPanelProductos().isVisible()) {
                     vistaPrincipal.mostrarCategorias();
-                } else if (vistaPrincipal.getPanelOpciones().isVisible() || 
-                          vistaPrincipal.getPanelMantenimiento().isVisible()) {
+                } else if (vistaPrincipal.getPanelOpciones().isVisible() ||
+                           vistaPrincipal.getPanelMantenimiento().isVisible()) {
                     vistaPrincipal.mostrarInicio();
                     vistaPrincipal.getPanelBoton().setVisible(false);
                 }
-                
                 break;
         }
     }
     
+    /**
+     * Asigna los oyentes de acción a todos los botones de la vista principal,
+     * definiendo su comando de acción correspondiente.
+     */
     public void asignarOyentes() {
-        
-        vistaPrincipal.botonParaLlevar.setActionCommand("LLEVAR");//llevar en mantenimiento
-        vistaPrincipal.botonParaLlevar.addActionListener(this); 
-        vistaPrincipal.botonParaLaMesa.setActionCommand("MESA"); //solo sirve mesa
-        vistaPrincipal.botonParaLaMesa.addActionListener(this); 
-        
+        vistaPrincipal.botonParaLlevar.setActionCommand("LLEVAR");
+        vistaPrincipal.botonParaLlevar.addActionListener(this);
+        vistaPrincipal.botonParaLaMesa.setActionCommand("MESA");
+        vistaPrincipal.botonParaLaMesa.addActionListener(this);
+
         vistaPrincipal.getPanelMantenimiento().jButton1.setActionCommand("MENU1");
         vistaPrincipal.getPanelMantenimiento().jButton1.addActionListener(this);
         vistaPrincipal.getPanelMantenimiento().jButton2.setActionCommand("SALIR");
         vistaPrincipal.getPanelMantenimiento().jButton2.addActionListener(this);
-        
+
         vistaPrincipal.getPanelOpciones().botonBucket.setActionCommand("BUCKET");
         vistaPrincipal.getPanelOpciones().botonBucket.addActionListener(this);
         vistaPrincipal.getPanelOpciones().botonCombo.setActionCommand("COMBO");
@@ -161,12 +178,20 @@ public class ControlVentana implements ActionListener{
         vistaPrincipal.getPanelOpciones().botonHelado.addActionListener(this);
         vistaPrincipal.getPanelOpciones().botonPicar.setActionCommand("PICAR");
         vistaPrincipal.getPanelOpciones().botonPicar.addActionListener(this);
-        vistaPrincipal.atras.addActionListener(this);
+
         vistaPrincipal.atras.setActionCommand("ATRAS");
+        vistaPrincipal.atras.addActionListener(this);
     }
     
-    public Timer usarTimer(){
-        Timer timer = new Timer(6000, e -> {
+    /**
+     * Crea y arranca un Timer Swing que, tras el tiempo de inactividad
+     * especificado (1 minuto), muestra un anuncio de retorno al inicio y
+     * restablece el panel principal.
+     * 
+     * @return el timer configurado y en marcha
+     */
+    public Timer usarTimer() {
+        Timer timer = new Timer(60000, e -> {
             vistaPrincipal.anuncio("No se usó durante el tiempo establecido", "INICIO");
             vistaPrincipal.getPanelBoton().setVisible(false);
             vistaPrincipal.getPanelMantenimiento().setVisible(false);
@@ -178,5 +203,4 @@ public class ControlVentana implements ActionListener{
         timer.start();
         return timer;
     }
-         
 }

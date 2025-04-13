@@ -8,23 +8,51 @@ import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Gaseosa;
 import edu.progavud.taller1.model.Producto;
 
-
 /**
- *
- * @author crisc
+ * Clase encargada de manejar la lógica relacionada con la creación,
+ * modificación y referencia de combos en la aplicación.
+ * 
+ * Permite crear combos predefinidos, modificar sus componentes como el tamaño
+ * de la bebida, añadir adiciones y gestionar la referencia al combo actual.
+ * 
+ * @author  Nicolas Velasco
  */
 public class ControlCombo {
+
+    /** 
+     * Referencia al controlador principal de la aplicación. 
+     */
     private ControlPrincipal controlPrincipal;
+
+    /** 
+     * Combo actualmente en uso o seleccionado. 
+     */
     private Combo comboActual;
-    
+
+    /**
+     * Construye un controlador de combos enlazado al controlador principal.
+     * 
+     * @param controlPrincipal instancia principal del controlador
+     */
     public ControlCombo(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
     }
-    
+
+    /**
+     * Establece una referencia al combo actual sobre el cual se harán modificaciones.
+     * 
+     * @param combo combo al que se desea referenciar
+     */
     public void anadirReferenciaCombo(Combo combo) {
         comboActual = combo;
     }
-    
+
+    /**
+     * Crea y devuelve un conjunto de combos predefinidos del restaurante.
+     * Cada combo incluye una proteína, una bebida y una porción de papas.
+     * 
+     * @return un arreglo con los combos iniciales disponibles
+     */
     public Combo[] crearCombos() {
         Producto[] productosCombo1 = controlPrincipal.crearContenidoComboRedirect(
             "Nuggets de Pollo", "Deliciosos nuggets de pollo crujientes", "/assets/combo/Combo#1.png",
@@ -62,7 +90,12 @@ public class ControlCombo {
 
         return combosIniciales;
     }
-    
+
+    /**
+     * Cambia el tamaño de la gaseosa del combo actual y ajusta su precio en consecuencia.
+     * 
+     * @param nuevoTamano nuevo tamaño de la gaseosa (por ejemplo, "Grande")
+     */
     public void cambiarTamanoGaseosa(String nuevoTamano) {
         Producto[] productos = comboActual.getProductosIncluidos();
         Gaseosa gaseosa = (Gaseosa) productos[1];
@@ -71,14 +104,22 @@ public class ControlCombo {
         comboActual.cambiarPrecio();
     }
 
-    
+    /**
+     * Añade una nueva adición al combo actual y actualiza su precio.
+     * 
+     * @param adicion descripción de la adición a incluir
+     */
     public void anadirAdiciones(String adicion) {
         comboActual.setAdiciones(comboActual.getAdiciones() + " " + adicion);
         comboActual.cambiarPrecio();
     }
-    
+
+    /**
+     * Elimina la referencia actual al combo, dejando de trabajar sobre él.
+     */
     public void removerReferenciaCombo() {
         comboActual = null;
     }
-    
+
 }
+
