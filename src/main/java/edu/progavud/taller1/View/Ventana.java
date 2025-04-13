@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Component;
 
 /**
  *
@@ -17,10 +18,11 @@ public class Ventana extends javax.swing.JFrame {
     private PanelOpciones panelOpciones;
     private PanelProductos panelProductos;
     private JPanel panelPrincipal;
-    private JPanel panelContenido; // Panel que usa CardLayout para manejar los cambios entre paneles
+    private JPanel panelContenido;
+    private PanelPedido panelPedido;
     public JButton atras;
+    private JPanel panelBoton;
 
-    // Constantes para los nombres de las tarjetas en CardLayout
     private static final String CARD_INICIO = "inicio";
     private static final String CARD_MANTENIMIENTO = "mantenimiento";
     private static final String CARD_OPCIONES = "opciones";
@@ -94,7 +96,6 @@ public class Ventana extends javax.swing.JFrame {
         this.botonParaLlevar = botonParaLlevar;
     }
     
-    // Métodos para cambiar entre paneles usando CardLayout
     public void mostrarCategorias() {
         CardLayout cl = (CardLayout)(panelContenido.getLayout());
         cl.show(panelContenido, CARD_OPCIONES);
@@ -114,6 +115,16 @@ public class Ventana extends javax.swing.JFrame {
         CardLayout cl = (CardLayout)(panelContenido.getLayout());
         cl.show(panelContenido, CARD_MANTENIMIENTO);
     }
+
+    public JPanel getPanelBoton() {
+        return panelBoton;
+    }
+
+    public void setPanelBoton(JPanel panelBoton) {
+        this.panelBoton = panelBoton;
+    }
+    
+    
     
     /**
      * Creates new form Ventana
@@ -127,71 +138,74 @@ public class Ventana extends javax.swing.JFrame {
     }
     
     private void initComponents() {
-        // Configuración básica del frame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("ByteBurgers");
         setPreferredSize(new java.awt.Dimension(900, 600));
         
-        // Inicializar el panel principal con BorderLayout
         panelPrincipal = new JPanel(new BorderLayout());
         
-        // Crear el botón atrás con estilo
         atras = new JButton("Atrás");
-        atras.setBackground(new Color(125, 128, 218));
+        atras.setBackground(new Color(0x387780));
         atras.setForeground(new Color(241, 241, 233));
         atras.setFont(new java.awt.Font("SansSerif", 1, 14));
         atras.setPreferredSize(new java.awt.Dimension(100, 30));
+        atras.setBorder(null);
+        atras.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        // Panel para contener el botón atrás con padding
-        JPanel panelBoton = new JPanel();
+        panelPedido = new PanelPedido();
+        
+        panelBoton = new JPanel();
         panelBoton.setBackground(new Color(255, 87, 20));
+        panelBoton.setLayout(new BoxLayout(panelBoton, BoxLayout.Y_AXIS));
         panelBoton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelPedido.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelBoton.add(atras);
+        panelBoton.add(panelPedido);
         
-        // Crear panel contenido con CardLayout
+        
         panelContenido = new JPanel(new CardLayout());
         
-        // Inicializar todos los paneles
+        
         crearPanelInicio();
         
-        // Inicializar los otros paneles
+        
         panelMantenimiento = new PanelMantenimiento();
         panelOpciones = new PanelOpciones();
         panelProductos = new PanelProductos();
         
-        // Añadir paneles al CardLayout
+        
         panelContenido.add(jPanel1, CARD_INICIO);
         panelContenido.add(panelMantenimiento, CARD_MANTENIMIENTO);
         panelContenido.add(panelOpciones, CARD_OPCIONES);
         panelContenido.add(panelProductos, CARD_PRODUCTOS);
         
-        // Añadir componentes al panel principal
+        panelBoton.setVisible(false);
         panelPrincipal.add(panelBoton, BorderLayout.WEST);
         panelPrincipal.add(panelContenido, BorderLayout.CENTER);
         
-        // Establecer el panel principal como contenido de la ventana
+        
         getContentPane().add(panelPrincipal);
         
-        // Mostrar la tarjeta inicial
+       
         mostrarInicio();
         
         pack();
     }
     
     private void crearPanelInicio() {
-        // Panel de inicio
+      
         jPanel1 = new JPanel();
         jPanel1.setBackground(new Color(255, 87, 20));
         jPanel1.setLayout(new BorderLayout());
         
-        // Panel superior (barra de título)
+        
         jPanel2 = new JPanel();
         jPanel2.setBackground(new Color(255, 87, 20));
         jPanel2.setBorder(new MatteBorder(0, 0, 2, 0, new Color(0xF1F1E9)));
         jPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
         jPanel2.setLayout(new BorderLayout());
         
-        // Logo e ícono en el panel superior
+        
         JPanel logoPanel = new JPanel(new BorderLayout());
         logoPanel.setBackground(new Color(255, 87, 20));
         logoPanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 0));
@@ -266,7 +280,7 @@ public class Ventana extends javax.swing.JFrame {
         jLabel6 = new JLabel();
         
         // Añadir componentes al panel de inicio
-        jPanel1.add(jPanel2, BorderLayout.NORTH);
+        panelPrincipal.add(jPanel2, BorderLayout.NORTH);
         jPanel1.add(panelContenidoInicio, BorderLayout.CENTER);
     }
 
