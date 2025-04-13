@@ -13,12 +13,12 @@ import java.awt.image.BufferedImage;
  * @author ACER NITRO
  */
 public class Producto {
-    private String nombre;
-    private String descripcion;
-    private String rutaImagenProducto;
-    private int precio;
-    private int valorPuntos;
-    private int cantidad;
+    protected String nombre;
+    protected String descripcion;
+    protected String rutaImagenProducto;
+    protected int precio;
+    protected int valorPuntos;
+    protected int cantidad;
 
     public Producto(String nombre, String descripcion, String rutaImagenProducto, int precio, int valorPuntos, int cantidad) {
         this.nombre = nombre;

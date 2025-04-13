@@ -25,6 +25,8 @@ public class VentanaPrincipal extends JFrame {
         setVisible(true);
         this.controlVentana = controlVentana;
         initComponents();
+        setLocationRelativeTo(null);
+
     }
     /**
     * Método para inicializar los componentes dentro de la ventana
@@ -114,8 +116,6 @@ public class VentanaPrincipal extends JFrame {
         );
 
         pack();
-        
-        add(panelMantenimiento);
     }// </editor-fold>                        
 
     /**

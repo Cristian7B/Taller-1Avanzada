@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class Catalogo {
     private ArrayList<Categoria> catalogoGeneral;
     
-    public Catalogo(ArrayList<Categoria> catalogoGeneral) {
-        this.catalogoGeneral = catalogoGeneral;
+    public Catalogo() {
+        this.catalogoGeneral = new ArrayList<>();
     }
     
     public void anadirCategoria(Categoria categoria) {

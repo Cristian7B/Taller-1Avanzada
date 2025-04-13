@@ -16,6 +16,8 @@ public class VistaConfirmacionPuntos extends javax.swing.JFrame {
     public VistaConfirmacionPuntos() {
         setVisible(true);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

@@ -4,7 +4,11 @@
  */
 package edu.progavud.taller1.control;
 
+import edu.progavud.taller1.Control.ControlCatalogo;
+import edu.progavud.taller1.Control.ControlCategoria;
 import edu.progavud.taller1.model.Bucket;
+import edu.progavud.taller1.model.Catalogo;
+import edu.progavud.taller1.model.Categoria;
 import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Producto;
 
@@ -33,16 +37,64 @@ public class ControlPrincipal implements InterfaceCreacion{
      */
     private ControlVentana controlVentana;
     /**
-     * Controller que gestiona el lapso de tiempo
-     * entre acciones.
+     * Controller que gestiona el catalogo de productos de la tienda
      */
+    private ControlCatalogo controlCatalogo;
+    /**
+     * Controller que gestiona la categoria de un grupo de productos
+     */
+    private ControlCategoria controlCategoria;
+    /**
+     * Controller que gestiona la creación y modificación de combos
+     */
+    private ControlCombo controlCombo;
 
     public ControlPrincipal(){
         controlUsuario = new ControlUsuario(this);
         controlPedido = new ControlPedido(this);
         controlProducto = new ControlProducto(this);
         controlVentana = new ControlVentana(this);  
+        controlCatalogo = new ControlCatalogo(this);
+        controlCategoria = new ControlCategoria(this);
+        controlCombo = new ControlCombo(this);
+        cargarProductosTienda();
+        
     }
+    
+    public void cargarProductosTienda() {
+        controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearHamburguesas(), "Hamburguesas"));
+        controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearHelados(), "Helados"));
+        controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearParaPicar(), "Para Picar"));
+        controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlCombo.crearCombos(), "Combos"));
+    }
+    
+    public Categoria obtenerCategoria(String categoria) {
+        Categoria categoriaEncontrada = null;
+        
+        if(categoria == "Hamburguesa") {
+            categoriaEncontrada = controlCatalogo.obtenerCategoria(0);
+        } else if(categoria == "Helados") {
+            categoriaEncontrada = controlCatalogo.obtenerCategoria(1);
+        } else if(categoria == "Para Picar") {
+            categoriaEncontrada = controlCatalogo.obtenerCategoria(2);
+        } else if(categoria == "Combos") {
+            categoriaEncontrada = controlCatalogo.obtenerCategoria(3);
+        }
+        
+        return categoriaEncontrada;
+    }
+    
+    public Producto[] crearContenidoComboRedirect(String nombreProducto, String descripcionProducto, 
+                                                String rutaImagenProducto, String nombreGaseosa, 
+                                                String descripcionGaseosa, String tamanoGaseosa,
+                                                String nombrePapas, String descripcionPapas) {
+        return controlProducto.crearContenidoCombo(nombreProducto, descripcionProducto, 
+                                                rutaImagenProducto, nombreGaseosa, 
+                                                descripcionGaseosa, tamanoGaseosa,
+                                                nombrePapas, descripcionPapas);
+    }
+    
+    
 
     public void anadirProducto(Producto producto) {
         controlPedido.anadirProducto(producto);
