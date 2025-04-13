@@ -71,14 +71,19 @@ public class ControlPrincipal implements InterfaceCreacion{
     public Categoria obtenerCategoria(String categoria) {
         Categoria categoriaEncontrada = null;
         
-        if(categoria == "Hamburguesa") {
-            categoriaEncontrada = controlCatalogo.obtenerCategoria(0);
-        } else if(categoria == "Helados") {
-            categoriaEncontrada = controlCatalogo.obtenerCategoria(1);
-        } else if(categoria == "Para Picar") {
-            categoriaEncontrada = controlCatalogo.obtenerCategoria(2);
-        } else if(categoria == "Combos") {
-            categoriaEncontrada = controlCatalogo.obtenerCategoria(3);
+        switch (categoria){
+            case "Hamburguesa": 
+                categoriaEncontrada = controlCatalogo.obtenerCategoria(0);
+                break;
+            case "Helados":
+                categoriaEncontrada = controlCatalogo.obtenerCategoria(1);
+                break;
+            case "Para Picar":
+                categoriaEncontrada = controlCatalogo.obtenerCategoria(2);
+                break;
+            case "Combos":
+                categoriaEncontrada = controlCatalogo.obtenerCategoria(3);
+                break;
         }
         
         return categoriaEncontrada;

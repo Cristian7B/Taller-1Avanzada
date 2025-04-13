@@ -42,10 +42,9 @@ public class ControlPedido implements InterfaceCreacion{
     }
     
     
-    public void actualizarPuntosYPrecio() {
+    public void actualizarPuntosYPrecio() {       
         int totalPuntos = 0;
         int precio = 0;
-        
         for(int i = 0; i < pedidoActual.getArrayProductos().size(); i++) {
             precio += pedidoActual.getArrayProductos().get(i).getPrecio();
             totalPuntos += pedidoActual.getArrayProductos().get(i).getValorPuntos();
