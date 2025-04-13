@@ -148,5 +148,5 @@ public class ControlVentana implements ActionListener{
         timer.setRepeats(false);
         timer.start();
     }
-         
+    
 }

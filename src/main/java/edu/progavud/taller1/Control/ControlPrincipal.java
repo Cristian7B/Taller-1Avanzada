@@ -112,5 +112,8 @@ public class ControlPrincipal implements InterfaceCreacion{
     public void añadirBucket(Bucket bucketNuevo) {
         controlPedido.anadirProducto(bucketNuevo);
     }
-
+    public void obtenerProducto(Producto producto){
+        
+    }
+    
 }

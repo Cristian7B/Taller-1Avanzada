@@ -3,7 +3,10 @@ package edu.progavud.taller1.view;
 import edu.progavud.taller1.View.PanelMantenimiento;
 import edu.progavud.taller1.View.PanelOpciones;
 import edu.progavud.taller1.View.PanelPrincipal;
+import edu.progavud.taller1.View.PanelProductos;
 import edu.progavud.taller1.control.ControlVentana;
+import edu.progavud.taller1.model.Categoria;
+import edu.progavud.taller1.model.Producto;
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +17,7 @@ public class VentanaPrincipal extends JFrame {
     private edu.progavud.taller1.View.PanelPrincipal panelPrincipal;     // Lateral
     private edu.progavud.taller1.View.PanelMantenimiento panelMantenimiento;
     private edu.progavud.taller1.View.PanelOpciones panelOpciones;
-
+    private PanelProductos panelProductos;
     // Contenedor dinámico
     private JPanel panelCentral;
 
@@ -75,17 +78,36 @@ public class VentanaPrincipal extends JFrame {
         panelCentral.repaint();
     }
     
+    public JButton[] botonesAnadir(Categoria categoria, Producto producto){
+        JButton[] botones;
+        botones = new JButton[4];
+        for (int i = 0; i < categoria.getCategoria().length; i++){
+            botones[i] = this.getPanelProductos().botonProductosNormales(producto);
+        }
+        return botones;
+    }
+    
     public void anuncio(String aviso, String boton){
         JOptionPane.showMessageDialog(null, aviso, boton, JOptionPane.INFORMATION_MESSAGE);
     }
     public ControlVentana getControlVentana() {
         return controlVentana;
     }
-
+    
+    
     public void setControlVentana(ControlVentana controlVentana) {
         this.controlVentana = controlVentana;
     }
 
+    public PanelProductos getPanelProductos() {
+        return panelProductos;
+    }
+
+    public void setPanelProductos(PanelProductos panelProductos) {
+        this.panelProductos = panelProductos;
+    }
+
+    
     public PanelPrincipal getPanelPrincipal() {
         return panelPrincipal;
     }

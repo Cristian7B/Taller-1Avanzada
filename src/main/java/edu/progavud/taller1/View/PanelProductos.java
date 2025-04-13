@@ -17,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -69,6 +70,12 @@ public class PanelProductos extends JPanel {
         celda.add(panelTextos, BorderLayout.CENTER);
 
         add(celda);
+    }
+    
+    public JButton botonProductosNormales(Producto producto) {
+        JButton boton = new JButton("Añadir");
+        boton.setActionCommand(producto.getNombre());
+        return boton;
     }
     
     public void resetear() {
