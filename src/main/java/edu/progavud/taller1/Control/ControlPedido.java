@@ -7,7 +7,7 @@ package edu.progavud.taller1.control;
 import edu.progavud.taller1.model.Bucket;
 import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Gaseosa;
-import edu.progavud.taller1.model.Pedido;
+import edu.progavud.taller1.Model.Pedido;
 import edu.progavud.taller1.model.Producto;
 /**
  *
