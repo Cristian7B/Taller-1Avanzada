@@ -4,6 +4,7 @@
  */
 package edu.progavud.taller1.control;
 
+import edu.progavud.taller1.View.Ventana;
 import edu.progavud.taller1.View.VistaMantenimiento;
 import edu.progavud.taller1.View.VistaProducto;
 import edu.progavud.taller1.model.Categoria;
@@ -26,118 +27,140 @@ import javax.swing.Timer;
  */
 public class ControlVentana implements ActionListener{
     private ControlPrincipal controlPrincipal;
-    private VentanaPrincipal vistaPrincipal;
+    private Ventana vistaPrincipal;
+    private VistaProducto vistaProducto;
 
 
 
 
     public ControlVentana(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
-        vistaPrincipal = new VentanaPrincipal(this);
+        vistaPrincipal = new Ventana(this);
+        vistaProducto = new VistaProducto(this);
         asignarOyentes();
     }
     
-    /* Snippet of the actionPerformed method in ControlVentana */
-
+    @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-        vistaPrincipal.getPanelPrincipal().setVisible(true);
-        vistaPrincipal.getPanelMantenimiento().setVisible(false);
-        switch (comando){
+
+        switch (comando) {
             case "LLEVAR":
-                vistaPrincipal.getPanelPrincipal().setVisible(false);
-                vistaPrincipal.getPanelMantenimiento().setVisible(true);
+                vistaPrincipal.mostrarMantenimiento();
                 timer();
                 break;
+
             case "MESA":
-                vistaPrincipal.setVisible(true);
-                //vistaProducto.mostrarCategorias();
-                vistaPrincipal.setVisible(false);
+                vistaPrincipal.mostrarCategorias();
                 timer();
                 break;
+
             case "MENU1":
-                vistaPrincipal.getPanelMantenimiento().setVisible(false);
-                vistaPrincipal.getPanelPrincipal().setVisible(true);
+                vistaPrincipal.mostrarInicio();
                 timer();
                 break;
+
             case "SALIR":
                 vistaPrincipal.anuncio("Hasta pronto", "Salir");
                 System.exit(0);
                 break;
+
             case "COMBO":
-                //vistaProducto.getPanelProducto().resetear();
+                vistaPrincipal.getPanelProductos().resetear();
                 Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Combos");
                 System.out.println("Entro" + categoriaIterar.getCategoria());
-                //vistaProducto.mostrarProductos();
+                vistaPrincipal.mostrarProductos();
                 for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    //vistaProducto.getPanelProducto().cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i]);
+                    vistaPrincipal.getPanelProductos().cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i], i);
                 }
                 timer();
                 break;
+
             case "BUCKET":
+                // Aquí deberías implementar la carga de productos tipo BUCKET
+                vistaPrincipal.mostrarProductos();
                 timer();
                 break;
+
             case "HAMBURGUESA":
-                //vistaProducto.getPanelProducto().resetear();
+                vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Hamburguesa");
                 System.out.println("Entro" + categoriaIterar.getCategoria());
-                //vistaProducto.mostrarProductos();
+                vistaPrincipal.mostrarProductos();
                 for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    //vistaProducto.getPanelProducto().cargarProductosNormales(categoriaIterar.getCategoria()[i]);
+                    vistaPrincipal.getPanelProductos().cargarHamburguesas(categoriaIterar.getCategoria()[i], i);
                 }
                 timer();
                 break;
+
             case "POLLO":
+                // Aquí deberías implementar la carga de productos tipo POLLO
+                vistaPrincipal.mostrarProductos();
                 timer();
                 break;
+
             case "HELADO":
+                vistaPrincipal.getPanelProductos().resetear();
+                categoriaIterar = controlPrincipal.obtenerCategoria("Helados");
+                System.out.println("Entro" + categoriaIterar.getCategoria());
+                vistaPrincipal.mostrarProductos();
+                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos().cargarHelados(categoriaIterar.getCategoria()[i], i);
+                }
                 timer();
                 break;
+
             case "PICAR":
-                //vistaProducto.getPanelProducto().resetear();
+                vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Para Picar");
                 System.out.println("Entro" + categoriaIterar.getCategoria());
-                //vistaProducto.mostrarProductos();
+                vistaPrincipal.mostrarProductos();
                 for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    //vistaProducto.getPanelProducto().cargarProductosNormales(categoriaIterar.getCategoria()[i]);
+                    vistaPrincipal.getPanelProductos().cargarPicar(categoriaIterar.getCategoria()[i], i);
                 }
                 timer();
                 break;
-                
+
             case "ATRAS":
+                // Implementar lógica para el botón atrás
+                // Necesitamos saber cuál panel está actualmente visible para volver al anterior
+                if (vistaPrincipal.getPanelProductos().isVisible()) {
+                    vistaPrincipal.mostrarCategorias();
+                } else if (vistaPrincipal.getPanelOpciones().isVisible() || 
+                          vistaPrincipal.getPanelMantenimiento().isVisible()) {
+                    vistaPrincipal.mostrarInicio();
+                }
+                timer();
                 break;
-            
-        } 
+        }
     }
     
     public void asignarOyentes() {
         
-        vistaPrincipal.getPanelPrincipal().jButton1.setActionCommand("LLEVAR");//llevar en mantenimiento
-        vistaPrincipal.getPanelPrincipal().jButton1.addActionListener(this); 
-        vistaPrincipal.getPanelPrincipal().jButton2.setActionCommand("MESA"); //solo sirve mesa
-        vistaPrincipal.getPanelPrincipal().jButton2.addActionListener(this); 
-        vistaPrincipal.jMenuItem1.setActionCommand("SALIR");
-        vistaPrincipal.jMenuItem1.addActionListener(this);
+        vistaPrincipal.botonParaLlevar.setActionCommand("LLEVAR");//llevar en mantenimiento
+        vistaPrincipal.botonParaLlevar.addActionListener(this); 
+        vistaPrincipal.botonParaLaMesa.setActionCommand("MESA"); //solo sirve mesa
+        vistaPrincipal.botonParaLaMesa.addActionListener(this); 
         
         vistaPrincipal.getPanelMantenimiento().jButton1.setActionCommand("MENU1");
         vistaPrincipal.getPanelMantenimiento().jButton1.addActionListener(this);
         vistaPrincipal.getPanelMantenimiento().jButton2.setActionCommand("SALIR");
         vistaPrincipal.getPanelMantenimiento().jButton2.addActionListener(this);
         
-//        vistaProducto.getPanelOpciones().botonBucket.setActionCommand("BUCKET");
-//        vistaProducto.getPanelOpciones().botonBucket.addActionListener(this);
-//        vistaProducto.getPanelOpciones().botonCombo.setActionCommand("COMBO");
-//        vistaProducto.getPanelOpciones().botonCombo.addActionListener(this);
-//        vistaProducto.getPanelOpciones().botonHamburguesa.setActionCommand("HAMBURGUESA");
-//        vistaProducto.getPanelOpciones().botonHamburguesa.addActionListener(this);
-//        vistaProducto.getPanelOpciones().botonPollo.setActionCommand("POLLO");
-//        vistaProducto.getPanelOpciones().botonPollo.addActionListener(this);
-//        vistaProducto.getPanelOpciones().botonHelado.setActionCommand("HELADO");
-//        vistaProducto.getPanelOpciones().botonHelado.addActionListener(this);
-//        vistaProducto.getPanelOpciones().botonPicar.setActionCommand("PICAR");
-//        vistaProducto.getPanelOpciones().botonPicar.addActionListener(this);
-//        vistaProducto.atras.addActionListener(this);
-//        vistaProducto.atras.setActionCommand("ATRAS");
+        vistaPrincipal.getPanelOpciones().botonBucket.setActionCommand("BUCKET");
+        vistaPrincipal.getPanelOpciones().botonBucket.addActionListener(this);
+        vistaPrincipal.getPanelOpciones().botonCombo.setActionCommand("COMBO");
+        vistaPrincipal.getPanelOpciones().botonCombo.addActionListener(this);
+        vistaPrincipal.getPanelOpciones().botonHamburguesa.setActionCommand("HAMBURGUESA");
+        vistaPrincipal.getPanelOpciones().botonHamburguesa.addActionListener(this);
+        vistaPrincipal.getPanelOpciones().botonPollo.setActionCommand("POLLO");
+        vistaPrincipal.getPanelOpciones().botonPollo.addActionListener(this);
+        vistaPrincipal.getPanelOpciones().botonHelado.setActionCommand("HELADO");
+        vistaPrincipal.getPanelOpciones().botonHelado.addActionListener(this);
+        vistaPrincipal.getPanelOpciones().botonPicar.setActionCommand("PICAR");
+        vistaPrincipal.getPanelOpciones().botonPicar.addActionListener(this);
+        vistaPrincipal.atras.addActionListener(this);
+        vistaPrincipal.atras.setActionCommand("ATRAS");
     }
     
     public void timer(){

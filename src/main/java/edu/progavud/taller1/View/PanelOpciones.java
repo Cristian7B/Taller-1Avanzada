@@ -27,7 +27,7 @@ public class PanelOpciones extends JPanel {
         setLayout(new GridLayout(3,2));
         setBackground(Color.gray);
         inicializarComponentes();
-        setVisible(true);
+        setVisible(false);
     }
     
     public void inicializarComponentes(){
