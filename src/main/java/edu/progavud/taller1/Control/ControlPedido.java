@@ -9,6 +9,7 @@ import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Gaseosa;
 import edu.progavud.taller1.model.Pedido;
 import edu.progavud.taller1.model.Producto;
+import java.util.ArrayList;
 /**
  *
  * @author ACER NITRO
@@ -22,8 +23,16 @@ public class ControlPedido implements InterfaceCreacion{
         this.pedidoActual = new Pedido();
     }
     
+    public Pedido retornarPedido() {
+        return pedidoActual;
+    }
+    
     public void crearPedido() {
         pedidoActual = new Pedido();
+    }
+    
+    public ArrayList<Producto> productosPedido() {
+        return pedidoActual.getArrayProductos();
     }
     
     public void anadirProducto(Producto producto) {
