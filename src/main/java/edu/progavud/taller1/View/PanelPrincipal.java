@@ -18,6 +18,7 @@ public class PanelPrincipal extends JPanel {
 
     public PanelPrincipal() {
         initComponents();
+        setVisible(false);
     }
 
     private void initComponents() {

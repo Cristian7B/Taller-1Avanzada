@@ -11,6 +11,7 @@ import edu.progavud.taller1.model.Catalogo;
 import edu.progavud.taller1.model.Categoria;
 import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Producto;
+import java.util.ArrayList;
 
 /**
  * Clase encargada de la gestion y comunicacion 
@@ -58,7 +59,6 @@ public class ControlPrincipal implements InterfaceCreacion{
         controlCategoria = new ControlCategoria(this);
         controlCombo = new ControlCombo(this);
         cargarProductosTienda();
-        
     }
     
     public void cargarProductosTienda() {
@@ -100,17 +100,26 @@ public class ControlPrincipal implements InterfaceCreacion{
     }
     
     
-
+    public void crearPedido() {
+        controlPedido.crearPedido();
+    }
+    
+    public ArrayList<Producto> obtenerProductosPedido() {
+        return controlPedido.productosPedido();
+    }
     public void anadirProducto(Producto producto) {
         controlPedido.anadirProducto(producto);
+        controlPedido.actualizarPuntosYPrecio();
     }
     
     public void añadirCombo(Combo comboNuevo) {
         controlPedido.anadirProducto(comboNuevo);
+        controlPedido.actualizarPuntosYPrecio();
     }
     
     public void añadirBucket(Bucket bucketNuevo) {
         controlPedido.anadirProducto(bucketNuevo);
+        controlPedido.actualizarPuntosYPrecio();
     }
     public void obtenerProducto(Producto producto){
         
