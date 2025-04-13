@@ -50,6 +50,10 @@ public class ControlPrincipal implements InterfaceCreacion{
      */
     private ControlCombo controlCombo;
 
+    /**
+     * Método constructor de la clase.
+     * Crea un objeto ControlPrincipal.
+     */
     public ControlPrincipal(){
         controlUsuario = new ControlUsuario(this);
         controlPedido = new ControlPedido(this);
@@ -60,7 +64,11 @@ public class ControlPrincipal implements InterfaceCreacion{
         controlCombo = new ControlCombo(this);
         cargarProductosTienda();
     }
-    
+    /**
+     * Carga las categorias en el panel de las categorias,
+     * posteriormente será utilizado para obtener las 
+     * categorias en el control de la ventana.
+     */
     public void cargarProductosTienda() {
         controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearHamburguesas(), "Hamburguesas"));
         controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearHelados(), "Helados"));
@@ -69,6 +77,11 @@ public class ControlPrincipal implements InterfaceCreacion{
         controlCatalogo.anadirCategoria(controlCategoria.crearCategoria(controlProducto.crearPollo(), "Pollos"));
     }
     
+    /**
+     * Obtiene la categoria con el nombre del parametro recibido.
+     * @param categoria
+     * @return categoriaEncontrada categoria la cual estamos buscando.
+     */
     public Categoria obtenerCategoria(String categoria) {
         Categoria categoriaEncontrada = null;
         
@@ -92,6 +105,18 @@ public class ControlPrincipal implements InterfaceCreacion{
         return categoriaEncontrada;
     }
     
+    /**
+     * Crea el contenido del combo a partir de sus parámetros.
+     * @param nombreProducto        nombre del producto combo.
+     * @param descripcionProducto   descripción del combo.
+     * @param rutaImagenProducto    ruta relativa de su imagen.
+     * @param nombreGaseosa         nombre de su gaseosa.
+     * @param descripcionGaseosa    descripcion de la gaseosa.
+     * @param tamanoGaseosa         tamaño de la gaseosa.
+     * @param nombrePapas           nombre de las papas.
+     * @param descripcionPapas      descripción de las papas.
+     * @return contenido del combo, como array de productos.
+     */
     public Producto[] crearContenidoComboRedirect(String nombreProducto, String descripcionProducto, 
                                                 String rutaImagenProducto, String nombreGaseosa, 
                                                 String descripcionGaseosa, String tamanoGaseosa,
@@ -101,6 +126,7 @@ public class ControlPrincipal implements InterfaceCreacion{
                                                 descripcionGaseosa, tamanoGaseosa,
                                                 nombrePapas, descripcionPapas);
     }
+    
     
     
     public void crearPedido() {
@@ -114,19 +140,73 @@ public class ControlPrincipal implements InterfaceCreacion{
     public ArrayList<Producto> obtenerProductosPedido() {
         return controlPedido.productosPedido();
     }
+
+    /**
+     * Añade un producto.
+     * @param producto  producto a añadir.
+     */
     public void anadirProducto(Producto producto) {
         controlPedido.anadirProducto(producto);
         controlPedido.actualizarPuntosYPrecio();
     }
-    
+    public void anadirProductoFactura(Producto producto){
+        controlVentana.getVistaPrincipal().getPanelFactura().anadirProductoFactura(producto);
+    }
+    public void anadirBucketFactura(Bucket bucket){
+        controlVentana.getVistaPrincipal().getPanelFactura().anadirBucketFactura(bucket);
+
+    }
+    public void anadirComboFactura(Combo combo){
+        controlVentana.getVistaPrincipal().getPanelFactura().anadirComboFactura(combo);
+    }
+            
+    public ArrayList anadirNombreFactura(Producto producto){
+        ArrayList<String> nombres = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            nombres.add(p.getNombre());
+        }
+        return nombres;
+    }
+    public ArrayList anadirValorUnitarioFactura(Producto producto){
+        ArrayList<String> valores = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            valores.add(p.getNombre());
+        }
+        return valores;
+    }
+    public ArrayList anadirCantidadFactura(Producto producto){
+        ArrayList<String> cantidades = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            cantidades.add(p.getNombre());
+        }
+        return cantidades;
+    }
+    public ArrayList anadirPrecioTFactura(Producto producto){
+        ArrayList<String> precioT = new ArrayList<String>();
+        for (Producto p : controlPedido.productosPedido()){
+            precioT.add(p.getNombre());
+        }
+        return precioT;
+    }
+    /**
+     * Añade un combo.
+     * @param comboNuevo    combo a añadir.
+     */
     public void añadirCombo(Combo comboNuevo) {
         controlPedido.anadirProducto(comboNuevo);
         controlPedido.actualizarPuntosYPrecio();
     }
     
+    /**
+     * Añade un bucket.
+     * @param bucketNuevo   bucket a añadir. 
+     */
     public void añadirBucket(Bucket bucketNuevo) {
         controlPedido.anadirProducto(bucketNuevo);
         controlPedido.actualizarPuntosYPrecio();
     }
-
+    public void obtenerProducto(Producto producto){
+        
+    }
+    
 }

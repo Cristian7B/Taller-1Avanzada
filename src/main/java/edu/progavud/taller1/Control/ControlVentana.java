@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package edu.progavud.taller1.control;
 
 import edu.progavud.taller1.View.Ventana;
@@ -12,16 +8,32 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-
 /**
- *
- * @author crisc
+ * Controlador de la única ventana principal de la aplicación. 
+ * Se encarga de delegar la visualización de los distintos paneles sobre un único JFrame,
+ * así como de gestionar la inactividad mediante un temporizador Swing.
+ * 
+ * @author Cristian Bonilla
  */
-public class ControlVentana implements ActionListener{
+public class ControlVentana implements ActionListener {
+    
+    /** 
+     * Controlador principal de la aplicación, desde el cual se obtienen datos del modelo. 
+     */
     private ControlPrincipal controlPrincipal;
+    
+    /** 
+     * Vista principal donde se muestran todos los paneles. 
+     */
     private Ventana vistaPrincipal;
     Timer timer;
 
+    /**
+     * Crea un nuevo controlador de ventana.
+     * Inicializa la vista, asigna los oyentes de los botones y prepara un temporizador inactivo.
+     * 
+     * @param controlPrincipal instancia del controlPrincipal que provee acceso al modelo.
+     */
     public ControlVentana(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
         vistaPrincipal = new Ventana(this);
@@ -29,6 +41,12 @@ public class ControlVentana implements ActionListener{
         timer = new javax.swing.Timer(0, null);
     }
     
+    /**
+     * Maneja los eventos de acción disparados por los botones de la interfaz.
+     * Según el comando de acción, cambia de panel o realiza otras acciones
+     * 
+     * @param e evento de acción que contiene el comando String a procesar.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
@@ -147,8 +165,8 @@ public class ControlVentana implements ActionListener{
                 timer = usarTimer();
                 if (vistaPrincipal.getPanelProductos().isVisible()) {
                     vistaPrincipal.mostrarCategorias();
-                } else if (vistaPrincipal.getPanelOpciones().isVisible() || 
-                          vistaPrincipal.getPanelMantenimiento().isVisible()) {
+                } else if (vistaPrincipal.getPanelOpciones().isVisible() ||
+                           vistaPrincipal.getPanelMantenimiento().isVisible()) {
                     vistaPrincipal.mostrarInicio();
                     vistaPrincipal.getPanelBoton().setVisible(false);
                     controlPrincipal.crearPedido();
@@ -297,17 +315,16 @@ public class ControlVentana implements ActionListener{
     }
     
     public void asignarOyentes() {
-        
-        vistaPrincipal.botonParaLlevar.setActionCommand("LLEVAR");//llevar en mantenimiento
-        vistaPrincipal.botonParaLlevar.addActionListener(this); 
-        vistaPrincipal.botonParaLaMesa.setActionCommand("MESA"); //solo sirve mesa
-        vistaPrincipal.botonParaLaMesa.addActionListener(this); 
-        
+        vistaPrincipal.botonParaLlevar.setActionCommand("LLEVAR");
+        vistaPrincipal.botonParaLlevar.addActionListener(this);
+        vistaPrincipal.botonParaLaMesa.setActionCommand("MESA");
+        vistaPrincipal.botonParaLaMesa.addActionListener(this);
+
         vistaPrincipal.getPanelMantenimiento().jButton1.setActionCommand("MENU1");
         vistaPrincipal.getPanelMantenimiento().jButton1.addActionListener(this);
         vistaPrincipal.getPanelMantenimiento().jButton2.setActionCommand("SALIR");
         vistaPrincipal.getPanelMantenimiento().jButton2.addActionListener(this);
-        
+
         vistaPrincipal.getPanelOpciones().botonBucket.setActionCommand("BUCKET");
         vistaPrincipal.getPanelOpciones().botonBucket.addActionListener(this);
         vistaPrincipal.getPanelOpciones().botonCombo.setActionCommand("COMBO");
@@ -320,10 +337,26 @@ public class ControlVentana implements ActionListener{
         vistaPrincipal.getPanelOpciones().botonHelado.addActionListener(this);
         vistaPrincipal.getPanelOpciones().botonPicar.setActionCommand("PICAR");
         vistaPrincipal.getPanelOpciones().botonPicar.addActionListener(this);
-        vistaPrincipal.atras.addActionListener(this);
+
         vistaPrincipal.atras.setActionCommand("ATRAS");
+        vistaPrincipal.atras.addActionListener(this);
+        
+        vistaPrincipal.getPanelPedido().botonPago.setActionCommand("PAGO");
+        vistaPrincipal.getPanelPedido().botonPago.addActionListener(this);
+        
+        vistaPrincipal.getPanelFactura().botonEfectivo.setActionCommand("EFECTIVO");
+        vistaPrincipal.getPanelFactura().botonEfectivo.addActionListener(this);
+        vistaPrincipal.getPanelFactura().botonTarjeta.setActionCommand("TARJETA");
+        vistaPrincipal.getPanelFactura().botonTarjeta.addActionListener(this);
     }
     
+    /**
+     * Crea y arranca un Timer Swing que, tras el tiempo de inactividad
+     * especificado (1 minuto), muestra un anuncio de retorno al inicio y
+     * restablece el panel principal.
+     * 
+     * @return el timer configurado y en marcha
+     */
     public Timer usarTimer(){
         Timer timer = new Timer(60000, e -> {
             vistaPrincipal.anuncio("No se usó durante el tiempo establecido", "INICIO");
@@ -337,5 +370,30 @@ public class ControlVentana implements ActionListener{
         timer.start();
         return timer;
     }
-         
+
+    public ControlPrincipal getControlPrincipal() {
+        return controlPrincipal;
+    }
+
+    public void setControlPrincipal(ControlPrincipal controlPrincipal) {
+        this.controlPrincipal = controlPrincipal;
+    }
+
+    public Ventana getVistaPrincipal() {
+        return vistaPrincipal;
+    }
+
+    public void setVistaPrincipal(Ventana vistaPrincipal) {
+        this.vistaPrincipal = vistaPrincipal;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+    
+    
 }

@@ -6,20 +6,35 @@ package edu.progavud.taller1.control;
 
 import edu.progavud.taller1.model.Gaseosa;
 import edu.progavud.taller1.model.Producto;
-import java.util.ArrayList;
 
 /**
- *
- * @author ACER NITRO
+ * Clase encargada de crear y gestionar los diferentes tipos de productos
+ * disponibles en el sistema.
+ * 
+ * Proporciona métodos para inicializar productos con información predeterminada 
+ * y generar el contenido de un combo a partir de parámetros dados.
+ * 
+ * @author Nicolas Velasco
  */
 public class ControlProducto {
 
+    /** Referencia al controlador principal. */
     private ControlPrincipal controlPrincipal;
 
+    /**
+     * Constructor que inicializa la clase con el controlador principal.
+     * 
+     * @param controlPrincipal controlador principal de la aplicación
+     */
     public ControlProducto(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
     }
-    
+
+    /**
+     * Crea un arreglo de productos correspondientes a hamburguesas predefinidas.
+     * 
+     * @return arreglo con hamburguesas disponibles
+     */
     public Producto[] crearHamburguesas() {
         Producto[] hamburguesasIniciales = {
             new Producto("Hamburguesa Full", "Hamburguesa doble carne con extra tocineta", "/assets/hamburguesa/img0.png", 12000, 1000, 0),
@@ -30,7 +45,12 @@ public class ControlProducto {
         
         return hamburguesasIniciales;
     }
-    
+
+    /**
+     * Crea un arreglo de productos correspondientes a helados predefinidos.
+     * 
+     * @return arreglo con helados disponibles
+     */
     public Producto[] crearHelados() {
         Producto[] heladosIniciales = {
             new Producto("McFlurry Oreo", "Helado de vainilla con galleta Oreo", "/assets/helado/MacFlurry#1.png", 6000, 500, 0),
@@ -40,7 +60,12 @@ public class ControlProducto {
         
         return heladosIniciales;
     }
-    
+
+    /**
+     * Crea un arreglo de productos tipo snack o para picar predefinidos.
+     * 
+     * @return arreglo con productos para picar
+     */
     public Producto[] crearParaPicar() {
         Producto[] paraPicarIniciales = {
             new Producto("Muffin Huevo-Tocineta", "Muffin para el desayuno con huevo, tocineta y queso", "/assets/picar/Muffin#1.png", 8000, 600, 0),
@@ -66,7 +91,6 @@ public class ControlProducto {
                                           String nombrePapas, String descripcionPapas) {
         Producto productoBase = new Producto(nombreProducto, descripcionProducto, rutaImagenProducto, 0, 0, 0);
         Gaseosa gaseosa = new Gaseosa(nombreGaseosa, descripcionGaseosa, rutaImagenProducto, 0, 0, 0, tamanoGaseosa);
-
         Producto papas = new Producto(nombrePapas, descripcionPapas, rutaImagenProducto, 0, 0, 0);
 
         Producto[] contenidoCombo = {
@@ -77,7 +101,5 @@ public class ControlProducto {
 
         return contenidoCombo;
     }
-
-  
-    
 }
+
