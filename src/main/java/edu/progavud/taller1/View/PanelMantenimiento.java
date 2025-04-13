@@ -17,7 +17,8 @@ public class PanelMantenimiento extends JPanel {
     private ControlVentana controlVentana;
     public PanelMantenimiento() {
         initComponents();
-        setVisible(false);
+        setVisible(true);
+        add(new JLabel("JSDFJASJDFJASDJFJASJ"));
     }
 
     /**
