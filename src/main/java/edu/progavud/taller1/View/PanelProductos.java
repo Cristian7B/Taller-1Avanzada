@@ -11,8 +11,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -34,7 +32,7 @@ public class PanelProductos extends JPanel {
     
     public PanelProductos() {
         setLayout(new GridLayout(2, 2, 10, 10));
-        setBackground(Color.DARK_GRAY);
+        setBackground(new Color(0xFFAD05));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
         botonesHamburguesa = new ArrayList<>();    

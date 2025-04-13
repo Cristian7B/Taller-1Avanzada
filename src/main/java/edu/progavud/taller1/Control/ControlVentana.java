@@ -3,8 +3,11 @@ package edu.progavud.taller1.control;
 import edu.progavud.taller1.View.Ventana;
 import edu.progavud.taller1.model.Categoria;
 import edu.progavud.taller1.model.Combo;
+import edu.progavud.taller1.model.Producto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.Timer;
 
 /**
@@ -25,9 +28,7 @@ public class ControlVentana implements ActionListener {
      * Vista principal donde se muestran todos los paneles. 
      */
     private Ventana vistaPrincipal;
-    
-    /** Temporizador Swing para detectar inactividad y volver al panel de inicio. */
-    private Timer timer;
+    Timer timer;
 
     /**
      * Crea un nuevo controlador de ventana.
@@ -37,9 +38,9 @@ public class ControlVentana implements ActionListener {
      */
     public ControlVentana(ControlPrincipal controlPrincipal) {
         this.controlPrincipal = controlPrincipal;
-        this.vistaPrincipal = new Ventana(this);
+        vistaPrincipal = new Ventana(this);
         asignarOyentes();
-        this.timer = new Timer(0, null);
+        timer = new javax.swing.Timer(0, null);
     }
     
     /**
@@ -51,7 +52,6 @@ public class ControlVentana implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-
         switch (comando) {
             case "LLEVAR":
                 timer.stop();
@@ -64,6 +64,7 @@ public class ControlVentana implements ActionListener {
                 vistaPrincipal.mostrarCategorias();
                 vistaPrincipal.getPanelBoton().setVisible(true);
                 timer = usarTimer();
+                controlPrincipal.crearPedido();
                 break;
 
             case "MENU1":
@@ -83,13 +84,15 @@ public class ControlVentana implements ActionListener {
                 vistaPrincipal.getPanelProductos().resetear();
                 Categoria categoriaIterar = controlPrincipal.obtenerCategoria("Combos");
                 vistaPrincipal.mostrarProductos();
-                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos()
-                                 .cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i], i);
+                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos().cargarProductosCombo((Combo) categoriaIterar.getCategoria()[i], i);
+                    vistaPrincipal.getPanelProductos().botonesCombo.get(i).setActionCommand("Combo" + i);
+                    vistaPrincipal.getPanelProductos().botonesCombo.get(i).addActionListener(this);
                 }
                 break;
 
             case "BUCKET":
+                // Aquí deberías implementar la carga de productos tipo BUCKET
                 timer.stop();
                 timer = usarTimer();
                 vistaPrincipal.mostrarProductos();
@@ -101,13 +104,15 @@ public class ControlVentana implements ActionListener {
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Hamburguesa");
                 vistaPrincipal.mostrarProductos();
-                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos()
-                                 .cargarHamburguesas(categoriaIterar.getCategoria()[i], i);
+                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos().cargarHamburguesas(categoriaIterar.getCategoria()[i], i);
+                    vistaPrincipal.getPanelProductos().botonesHamburguesa.get(i).setActionCommand("Hamburguesa" + i);
+                    vistaPrincipal.getPanelProductos().botonesHamburguesa.get(i).addActionListener(this);
                 }
                 break;
 
             case "POLLO":
+                
                 timer.stop();
                 vistaPrincipal.mostrarProductos();
                 timer = usarTimer();
@@ -119,10 +124,12 @@ public class ControlVentana implements ActionListener {
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Helados");
                 vistaPrincipal.mostrarProductos();
-                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos()
-                                 .cargarHelados(categoriaIterar.getCategoria()[i], i);
+                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos().cargarHelados(categoriaIterar.getCategoria()[i], i);
+                    vistaPrincipal.getPanelProductos().botonesHelado.get(i).setActionCommand("Helados" + i);
+                    vistaPrincipal.getPanelProductos().botonesHelado.get(i).addActionListener(this);
                 }
+                
                 break;
 
             case "PICAR":
@@ -131,10 +138,12 @@ public class ControlVentana implements ActionListener {
                 vistaPrincipal.getPanelProductos().resetear();
                 categoriaIterar = controlPrincipal.obtenerCategoria("Para Picar");
                 vistaPrincipal.mostrarProductos();
-                for (int i = 0; i < categoriaIterar.getCategoria().length; i++) {
-                    vistaPrincipal.getPanelProductos()
-                                 .cargarPicar(categoriaIterar.getCategoria()[i], i);
+                for(int i = 0; i < categoriaIterar.getCategoria().length; i++) {
+                    vistaPrincipal.getPanelProductos().cargarPicar(categoriaIterar.getCategoria()[i], i);
+                    vistaPrincipal.getPanelProductos().botonesPicar.get(i).setActionCommand("Picar" + i);
+                    vistaPrincipal.getPanelProductos().botonesPicar.get(i).addActionListener(this);
                 }
+                
                 break;
 
             case "ATRAS":
@@ -146,7 +155,69 @@ public class ControlVentana implements ActionListener {
                            vistaPrincipal.getPanelMantenimiento().isVisible()) {
                     vistaPrincipal.mostrarInicio();
                     vistaPrincipal.getPanelBoton().setVisible(false);
+                    controlPrincipal.crearPedido();
+                    vistaPrincipal.getPanelPedido().limpiarPedido();
                 }
+                
+                break;
+            case "Hamburguesa0":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[0]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[0].getNombre());
+                break;
+            case "Hamburguesa1":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[1]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[1].getNombre());
+                break;
+            case "Hamburguesa2":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[2]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[2].getNombre());
+                break;
+            case "Hamburguesa3":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[3]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Hamburguesa").getCategoria()[3].getNombre());
+                break;
+
+            case "Combo0":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[0]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[0].getNombre());
+                break;
+            case "Combo1":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[1]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[1].getNombre());
+                break;
+            case "Combo2":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[2]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[2].getNombre());
+                break;
+            case "Combo3":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Combos").getCategoria()[3]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Combos").getCategoria()[3].getNombre());
+                break;
+
+            case "Helados0":                
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Helados").getCategoria()[0]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Helados").getCategoria()[0].getNombre());
+                break;
+            case "Helados1":                
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Helados").getCategoria()[1]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Helados").getCategoria()[1].getNombre());
+                break;
+            case "Helados2":                
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Helados").getCategoria()[2]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Helados").getCategoria()[2].getNombre());
+                break;
+
+            case "Picar0":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[0]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[0].getNombre());
+                break;
+            case "Picar1":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[1]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[1].getNombre());
+                break;
+            case "Picar2":
+                controlPrincipal.anadirProducto(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[2]);
+                vistaPrincipal.getPanelPedido().anadirJLabel(controlPrincipal.obtenerCategoria("Para Picar").getCategoria()[2].getNombre());
                 break;
         }
     }
@@ -180,7 +251,6 @@ public class ControlVentana implements ActionListener {
         vistaPrincipal.getPanelOpciones().botonPicar.addActionListener(this);
 
         vistaPrincipal.atras.setActionCommand("ATRAS");
-        vistaPrincipal.atras.addActionListener(this);
     }
     
     /**
@@ -190,7 +260,7 @@ public class ControlVentana implements ActionListener {
      * 
      * @return el timer configurado y en marcha
      */
-    public Timer usarTimer() {
+    public Timer usarTimer(){
         Timer timer = new Timer(60000, e -> {
             vistaPrincipal.anuncio("No se usó durante el tiempo establecido", "INICIO");
             vistaPrincipal.getPanelBoton().setVisible(false);

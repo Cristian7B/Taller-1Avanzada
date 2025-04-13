@@ -23,6 +23,14 @@ public class Ventana extends javax.swing.JFrame {
     public JButton atras;
     private JPanel panelBoton;
 
+    public PanelPedido getPanelPedido() {
+        return panelPedido;
+    }
+
+    public void setPanelPedido(PanelPedido panelPedido) {
+        this.panelPedido = panelPedido;
+    }
+
     private static final String CARD_INICIO = "inicio";
     private static final String CARD_MANTENIMIENTO = "mantenimiento";
     private static final String CARD_OPCIONES = "opciones";
@@ -150,6 +158,7 @@ public class Ventana extends javax.swing.JFrame {
         atras.setFont(new java.awt.Font("SansSerif", 1, 14));
         atras.setPreferredSize(new java.awt.Dimension(100, 30));
         atras.setBorder(null);
+        atras.setMargin(new Insets(10, 20, 10, 20));
         atras.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         panelPedido = new PanelPedido();
@@ -170,6 +179,7 @@ public class Ventana extends javax.swing.JFrame {
         
         
         panelMantenimiento = new PanelMantenimiento();
+        
         panelOpciones = new PanelOpciones();
         panelProductos = new PanelProductos();
         

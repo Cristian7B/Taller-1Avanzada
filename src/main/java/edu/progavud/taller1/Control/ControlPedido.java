@@ -9,7 +9,7 @@ import edu.progavud.taller1.model.Combo;
 import edu.progavud.taller1.model.Gaseosa;
 import edu.progavud.taller1.Model.Pedido;
 import edu.progavud.taller1.model.Producto;
-
+import java.util.ArrayList;
 /**
  * Clase encargada de manejar la lógica asociada a la creación y administración de un pedido.
  * 
@@ -36,19 +36,19 @@ public class ControlPedido implements InterfaceCreacion {
         this.controlPrincipal = controlPrincipal;
         this.pedidoActual = new Pedido();
     }
-
-    /**
-     * Reinicia el pedido actual, creando uno nuevo desde cero.
-     */
+    
+    public Pedido retornarPedido() {
+        return pedidoActual;
+    }
+    
     public void crearPedido() {
         pedidoActual = new Pedido();
     }
-
-    /**
-     * Añade un producto individual al pedido actual.
-     * 
-     * @param producto producto a añadir
-     */
+    
+    public ArrayList<Producto> productosPedido() {
+        return pedidoActual.getArrayProductos();
+    }
+    
     public void anadirProducto(Producto producto) {
         pedidoActual.getArrayProductos().add(producto);
         actualizarPuntosYPrecio();
