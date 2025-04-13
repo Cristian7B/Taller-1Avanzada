@@ -7,6 +7,7 @@ import edu.progavud.taller1.control.ControlVentana;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,38 +41,32 @@ public class VistaProducto extends JFrame{
         setVisible(false);
     }
     
-    public void inicializarComponentes(){
-        
+    public void inicializarComponentes() {
         lblOpciones = new JLabel("CATEGORÍAS", JLabel.CENTER); 
         lblOpciones.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 36));
         lblOpciones.setForeground(Color.WHITE);
         lblOpciones.setBackground(Color.DARK_GRAY);
         lblOpciones.setOpaque(true);
         getContentPane().add(lblOpciones, BorderLayout.NORTH);
-        
+
         atras = new JButton("Ir atrás");
-        
         add(atras, BorderLayout.WEST);
-        
+
         layerPane = new JLayeredPane();
         layerPane.setPreferredSize(new Dimension(1200, 750));
-        
+
         panelOpciones = new PanelOpciones();
         panelOpciones.setBounds(250, 100, 700, 500);
-        
+
         panelProducto = new PanelProductos();
         panelProducto.setBounds(50, 50, 1100, 650);
         panelProducto.setVisible(false); 
-        
         layerPane.add(panelOpciones, Integer.valueOf(2));
         layerPane.add(panelProducto, Integer.valueOf(1));
-        
+
         add(layerPane, BorderLayout.CENTER);
-        
-        System.out.println("Panel producto bounds: " + panelProducto.getBounds());
-        System.out.println("Panel opciones bounds: " + panelOpciones.getBounds());
-        System.out.println("LayerPane size: " + layerPane.getPreferredSize());
     }
+
     
     public void mostrarCategorias() {
         panelProducto.setVisible(false);

@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.io.File;
 import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -37,7 +38,7 @@ public class PanelProductos extends JPanel {
      * @param count El número de productos a cargar
      */
     public void cargarProductosNormales(Producto producto) {
-        ImageIcon icon = new ImageIcon(producto.getImagenProducto());
+        ImageIcon icon = new ImageIcon(getClass().getResource(producto.getImagenProducto()));
         Image imgEscalada = icon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
         lblImagen.setHorizontalAlignment(JLabel.CENTER);
@@ -78,12 +79,11 @@ public class PanelProductos extends JPanel {
     
     public void cargarProductosCombo(Combo combo) {
         System.out.println("edu.progavud.taller1.View.PanelProductos.cargarProductosCombo() " + combo.getImagenProducto());
-        ImageIcon icon = new ImageIcon(combo.getImagenProducto());
+        ImageIcon icon = new ImageIcon(getClass().getResource(combo.getImagenProducto()));
         Image imgEscalada = icon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
         lblImagen.setHorizontalAlignment(JLabel.CENTER);
-
-
+        
         JPanel celda = new JPanel(new BorderLayout(5, 5));
         celda.setBackground(new Color(255, 214, 58)); 
         celda.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
